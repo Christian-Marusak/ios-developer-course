@@ -1,5 +1,5 @@
 
- MARK: Optional Homework
+ //MARK: Optional Homework
 class City {
     let numberOfCitizens: Int
     let numberOfFamilies: Int
@@ -129,7 +129,7 @@ class PayAsYouRide2 {
 
 var myRide2 = PayAsYouRide2.payByKmAndSalary(salaryNumber: .senior, payPerKilometer: 1.5, kilometersYouDone: 14)
 
-MARK: On the 3. Lesson
+//MARK: On the 3. Lesson
 
 
 Double.pi
