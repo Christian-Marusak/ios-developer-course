@@ -7,35 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA04B29C2BEFE97800532B72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC512492BEE13AA00986DF9 /* GoogleService-Info.plist */; };
+		AA04B2A22BEFEB5800532B72 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA04B29F2BEFEB5800532B72 /* Poppins-Bold.ttf */; };
+		AA04B2A32BEFEB5800532B72 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA04B2A02BEFEB5800532B72 /* Poppins-MediumItalic.ttf */; };
+		AA04B2A42BEFEB5800532B72 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA04B2A12BEFEB5800532B72 /* Poppins-Regular.ttf */; };
+		AA42FA132BED1CE20001BCE9 /* Course_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42FA122BED1CE20001BCE9 /* Course_AppUITests.swift */; };
+		AA42FA152BED1CE20001BCE9 /* Course_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42FA142BED1CE20001BCE9 /* Course_AppUITestsLaunchTests.swift */; };
+		AA42FA222BED1D110001BCE9 /* Course_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42FA212BED1D110001BCE9 /* Course_Tests.swift */; };
+		AA6275B12BEFE1B800646C3E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6275B02BEFE1B800646C3E /* Configuration.swift */; };
 		AA9556682BDBC46200E8FE28 /* Course_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9556672BDBC46200E8FE28 /* Course_AppApp.swift */; };
 		AA95566A2BDBC46200E8FE28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9556692BDBC46200E8FE28 /* ContentView.swift */; };
 		AA95566C2BDBC46200E8FE28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA95566B2BDBC46200E8FE28 /* Assets.xcassets */; };
 		AA95566F2BDBC46200E8FE28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA95566E2BDBC46200E8FE28 /* Preview Assets.xcassets */; };
+		AAC5124D2BEE145E00986DF9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = AAC5124C2BEE145E00986DF9 /* FirebaseAuth */; };
+		AAC5124F2BEE145E00986DF9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = AAC5124E2BEE145E00986DF9 /* FirebaseFirestore */; };
+		AAC512512BEE145E00986DF9 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = AAC512502BEE145E00986DF9 /* FirebaseFirestoreCombine-Community */; };
+		AAC512532BEE145E00986DF9 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AAC512522BEE145E00986DF9 /* FirebaseFirestoreSwift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AA42FA162BED1CE20001BCE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA95565C2BDBC46200E8FE28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA9556632BDBC46200E8FE28;
+			remoteInfo = "Course App";
+		};
+		AA42FA232BED1D110001BCE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA95565C2BDBC46200E8FE28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA9556632BDBC46200E8FE28;
+			remoteInfo = "Course App";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		AA9556642BDBC46200E8FE28 /* Course App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Course App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA04B29F2BEFEB5800532B72 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "Resources/Poppins-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		AA04B2A02BEFEB5800532B72 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-MediumItalic.ttf"; path = "Resources/Poppins-MediumItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		AA04B2A12BEFEB5800532B72 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "Resources/Poppins-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		AA42FA102BED1CE20001BCE9 /* Course AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Course AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA42FA122BED1CE20001BCE9 /* Course_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course_AppUITests.swift; sourceTree = "<group>"; };
+		AA42FA142BED1CE20001BCE9 /* Course_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AA42FA1F2BED1D110001BCE9 /* Course Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Course Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA42FA212BED1D110001BCE9 /* Course_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course_Tests.swift; sourceTree = "<group>"; };
+		AA42FA282BED1D5C0001BCE9 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		AA42FA292BED1E5F0001BCE9 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		AA6275B02BEFE1B800646C3E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		AA9556642BDBC46200E8FE28 /* App Course Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Course Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9556672BDBC46200E8FE28 /* Course_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course_AppApp.swift; sourceTree = "<group>"; };
 		AA9556692BDBC46200E8FE28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA95566B2BDBC46200E8FE28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA95566E2BDBC46200E8FE28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AAC0BB442BED6C720000F0F0 /* Course-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Course-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		AAC512492BEE13AA00986DF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AA9556612BDBC46200E8FE28 /* Frameworks */ = {
+		AA42FA0D2BED1CE10001BCE9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA42FA1C2BED1D110001BCE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA9556612BDBC46200E8FE28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAC512512BEE145E00986DF9 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				AAC5124D2BEE145E00986DF9 /* FirebaseAuth in Frameworks */,
+				AAC5124F2BEE145E00986DF9 /* FirebaseFirestore in Frameworks */,
+				AAC512532BEE145E00986DF9 /* FirebaseFirestoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA04B29D2BEFEAFE00532B72 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA95566B2BDBC46200E8FE28 /* Assets.xcassets */,
+				AA04B29E2BEFEB1E00532B72 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AA04B29E2BEFEB1E00532B72 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AA04B29F2BEFEB5800532B72 /* Poppins-Bold.ttf */,
+				AA04B2A02BEFEB5800532B72 /* Poppins-MediumItalic.ttf */,
+				AA04B2A12BEFEB5800532B72 /* Poppins-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		AA42FA0B2BED1C280001BCE9 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				AAC512492BEE13AA00986DF9 /* GoogleService-Info.plist */,
+				AA42FA282BED1D5C0001BCE9 /* Development.xcconfig */,
+				AA42FA292BED1E5F0001BCE9 /* Production.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		AA42FA112BED1CE20001BCE9 /* Course AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AA42FA122BED1CE20001BCE9 /* Course_AppUITests.swift */,
+				AA42FA142BED1CE20001BCE9 /* Course_AppUITestsLaunchTests.swift */,
+			);
+			path = "Course AppUITests";
+			sourceTree = "<group>";
+		};
+		AA42FA202BED1D110001BCE9 /* Course Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AA42FA212BED1D110001BCE9 /* Course_Tests.swift */,
+			);
+			path = "Course Tests";
+			sourceTree = "<group>";
+		};
 		AA95565B2BDBC46200E8FE28 = {
 			isa = PBXGroup;
 			children = (
 				AA9556662BDBC46200E8FE28 /* Course App */,
+				AA42FA112BED1CE20001BCE9 /* Course AppUITests */,
+				AA42FA202BED1D110001BCE9 /* Course Tests */,
 				AA9556652BDBC46200E8FE28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,7 +151,9 @@
 		AA9556652BDBC46200E8FE28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA9556642BDBC46200E8FE28 /* Course App.app */,
+				AA9556642BDBC46200E8FE28 /* App Course Dev.app */,
+				AA42FA102BED1CE20001BCE9 /* Course AppUITests.xctest */,
+				AA42FA1F2BED1D110001BCE9 /* Course Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,9 +161,12 @@
 		AA9556662BDBC46200E8FE28 /* Course App */ = {
 			isa = PBXGroup;
 			children = (
+				AA04B29D2BEFEAFE00532B72 /* Resources */,
+				AAC0BB442BED6C720000F0F0 /* Course-App-Info.plist */,
 				AA9556672BDBC46200E8FE28 /* Course_AppApp.swift */,
+				AA42FA0B2BED1C280001BCE9 /* Configuration */,
 				AA9556692BDBC46200E8FE28 /* ContentView.swift */,
-				AA95566B2BDBC46200E8FE28 /* Assets.xcassets */,
+				AA6275B02BEFE1B800646C3E /* Configuration.swift */,
 				AA95566D2BDBC46200E8FE28 /* Preview Content */,
 			);
 			path = "Course App";
@@ -70,6 +183,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA42FA0F2BED1CE10001BCE9 /* Course AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA42FA182BED1CE20001BCE9 /* Build configuration list for PBXNativeTarget "Course AppUITests" */;
+			buildPhases = (
+				AA42FA0C2BED1CE10001BCE9 /* Sources */,
+				AA42FA0D2BED1CE10001BCE9 /* Frameworks */,
+				AA42FA0E2BED1CE10001BCE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA42FA172BED1CE20001BCE9 /* PBXTargetDependency */,
+			);
+			name = "Course AppUITests";
+			productName = "Course AppUITests";
+			productReference = AA42FA102BED1CE20001BCE9 /* Course AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		AA42FA1E2BED1D110001BCE9 /* Course Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA42FA252BED1D110001BCE9 /* Build configuration list for PBXNativeTarget "Course Tests" */;
+			buildPhases = (
+				AA42FA1B2BED1D110001BCE9 /* Sources */,
+				AA42FA1C2BED1D110001BCE9 /* Frameworks */,
+				AA42FA1D2BED1D110001BCE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA42FA242BED1D110001BCE9 /* PBXTargetDependency */,
+			);
+			name = "Course Tests";
+			productName = "Course Tests";
+			productReference = AA42FA1F2BED1D110001BCE9 /* Course Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AA9556632BDBC46200E8FE28 /* Course App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA9556722BDBC46200E8FE28 /* Build configuration list for PBXNativeTarget "Course App" */;
@@ -81,10 +230,17 @@
 			buildRules = (
 			);
 			dependencies = (
+				AAC0BB472BED6D3E0000F0F0 /* PBXTargetDependency */,
 			);
 			name = "Course App";
+			packageProductDependencies = (
+				AAC5124C2BEE145E00986DF9 /* FirebaseAuth */,
+				AAC5124E2BEE145E00986DF9 /* FirebaseFirestore */,
+				AAC512502BEE145E00986DF9 /* FirebaseFirestoreCombine-Community */,
+				AAC512522BEE145E00986DF9 /* FirebaseFirestoreSwift */,
+			);
 			productName = "Course App";
-			productReference = AA9556642BDBC46200E8FE28 /* Course App.app */;
+			productReference = AA9556642BDBC46200E8FE28 /* App Course Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -97,6 +253,14 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					AA42FA0F2BED1CE10001BCE9 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = AA9556632BDBC46200E8FE28;
+					};
+					AA42FA1E2BED1D110001BCE9 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = AA9556632BDBC46200E8FE28;
+					};
 					AA9556632BDBC46200E8FE28 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -111,32 +275,74 @@
 				Base,
 			);
 			mainGroup = AA95565B2BDBC46200E8FE28;
+			packageReferences = (
+				AAC0BB452BED6D2D0000F0F0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = AA9556652BDBC46200E8FE28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				AA9556632BDBC46200E8FE28 /* Course App */,
+				AA42FA0F2BED1CE10001BCE9 /* Course AppUITests */,
+				AA42FA1E2BED1D110001BCE9 /* Course Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA42FA0E2BED1CE10001BCE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA42FA1D2BED1D110001BCE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA9556622BDBC46200E8FE28 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AA95566F2BDBC46200E8FE28 /* Preview Assets.xcassets in Resources */,
 				AA95566C2BDBC46200E8FE28 /* Assets.xcassets in Resources */,
+				AA04B29C2BEFE97800532B72 /* GoogleService-Info.plist in Resources */,
+				AA04B2A42BEFEB5800532B72 /* Poppins-Regular.ttf in Resources */,
+				AA04B2A22BEFEB5800532B72 /* Poppins-Bold.ttf in Resources */,
+				AA04B2A32BEFEB5800532B72 /* Poppins-MediumItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA42FA0C2BED1CE10001BCE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA42FA132BED1CE20001BCE9 /* Course_AppUITests.swift in Sources */,
+				AA42FA152BED1CE20001BCE9 /* Course_AppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA42FA1B2BED1D110001BCE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA42FA222BED1D110001BCE9 /* Course_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA9556602BDBC46200E8FE28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6275B12BEFE1B800646C3E /* Configuration.swift in Sources */,
 				AA95566A2BDBC46200E8FE28 /* ContentView.swift in Sources */,
 				AA9556682BDBC46200E8FE28 /* Course_AppApp.swift in Sources */,
 			);
@@ -144,9 +350,97 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AA42FA172BED1CE20001BCE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA9556632BDBC46200E8FE28 /* Course App */;
+			targetProxy = AA42FA162BED1CE20001BCE9 /* PBXContainerItemProxy */;
+		};
+		AA42FA242BED1D110001BCE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA9556632BDBC46200E8FE28 /* Course App */;
+			targetProxy = AA42FA232BED1D110001BCE9 /* PBXContainerItemProxy */;
+		};
+		AAC0BB472BED6D3E0000F0F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = AAC0BB462BED6D3E0000F0F0 /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		AA9556702BDBC46200E8FE28 /* Debug */ = {
+		AA42FA192BED1CE20001BCE9 /* Development - Debug */ = {
 			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Course App";
+			};
+			name = "Development - Debug";
+		};
+		AA42FA1A2BED1CE20001BCE9 /* Development - Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Course App";
+			};
+			name = "Development - Release";
+		};
+		AA42FA262BED1D110001BCE9 /* Development - Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Course App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Course App";
+			};
+			name = "Development - Debug";
+		};
+		AA42FA272BED1D110001BCE9 /* Development - Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Course App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Course App";
+			};
+			name = "Development - Release";
+		};
+		AA9556702BDBC46200E8FE28 /* Development - Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA42FA282BED1D5C0001BCE9 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -206,10 +500,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = "Development - Debug";
 		};
-		AA9556712BDBC46200E8FE28 /* Release */ = {
+		AA9556712BDBC46200E8FE28 /* Development - Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA42FA282BED1D5C0001BCE9 /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -262,9 +557,9 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Development - Release";
 		};
-		AA9556732BDBC46200E8FE28 /* Debug */ = {
+		AA9556732BDBC46200E8FE28 /* Development - Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -275,6 +570,7 @@
 				DEVELOPMENT_TEAM = 2MK43D3KDT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Course-App-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -285,15 +581,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(APP_BUNDLE_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = "Development - Debug";
 		};
-		AA9556742BDBC46200E8FE28 /* Release */ = {
+		AA9556742BDBC46200E8FE28 /* Development - Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -304,6 +600,7 @@
 				DEVELOPMENT_TEAM = 2MK43D3KDT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Course-App-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -314,36 +611,360 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(APP_BUNDLE_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = "Development - Release";
+		};
+		AAC0BB3C2BED690B0000F0F0 /* Production - Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA42FA292BED1E5F0001BCE9 /* Production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Production - Debug";
+		};
+		AAC0BB3D2BED690B0000F0F0 /* Production - Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Course App/Preview Content\"";
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Course-App-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(APP_BUNDLE_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Production - Debug";
+		};
+		AAC0BB3E2BED690B0000F0F0 /* Production - Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Course App";
+			};
+			name = "Production - Debug";
+		};
+		AAC0BB3F2BED690B0000F0F0 /* Production - Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Course App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Course App";
+			};
+			name = "Production - Debug";
+		};
+		AAC0BB402BED695A0000F0F0 /* Production - Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA42FA292BED1E5F0001BCE9 /* Production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Production - Release";
+		};
+		AAC0BB412BED695A0000F0F0 /* Production - Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Course App/Preview Content\"";
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Course-App-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(APP_BUNDLE_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Production - Release";
+		};
+		AAC0BB422BED695A0000F0F0 /* Production - Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Course App";
+			};
+			name = "Production - Release";
+		};
+		AAC0BB432BED695A0000F0F0 /* Production - Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MK43D3KDT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marusak.christian.Course-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Course App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Course App";
+			};
+			name = "Production - Release";
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA42FA182BED1CE20001BCE9 /* Build configuration list for PBXNativeTarget "Course AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA42FA192BED1CE20001BCE9 /* Development - Debug */,
+				AAC0BB3E2BED690B0000F0F0 /* Production - Debug */,
+				AA42FA1A2BED1CE20001BCE9 /* Development - Release */,
+				AAC0BB422BED695A0000F0F0 /* Production - Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Development - Release";
+		};
+		AA42FA252BED1D110001BCE9 /* Build configuration list for PBXNativeTarget "Course Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA42FA262BED1D110001BCE9 /* Development - Debug */,
+				AAC0BB3F2BED690B0000F0F0 /* Production - Debug */,
+				AA42FA272BED1D110001BCE9 /* Development - Release */,
+				AAC0BB432BED695A0000F0F0 /* Production - Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Development - Release";
+		};
 		AA95565F2BDBC46200E8FE28 /* Build configuration list for PBXProject "Course App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA9556702BDBC46200E8FE28 /* Debug */,
-				AA9556712BDBC46200E8FE28 /* Release */,
+				AA9556702BDBC46200E8FE28 /* Development - Debug */,
+				AAC0BB3C2BED690B0000F0F0 /* Production - Debug */,
+				AA9556712BDBC46200E8FE28 /* Development - Release */,
+				AAC0BB402BED695A0000F0F0 /* Production - Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Development - Release";
 		};
 		AA9556722BDBC46200E8FE28 /* Build configuration list for PBXNativeTarget "Course App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA9556732BDBC46200E8FE28 /* Debug */,
-				AA9556742BDBC46200E8FE28 /* Release */,
+				AA9556732BDBC46200E8FE28 /* Development - Debug */,
+				AAC0BB3D2BED690B0000F0F0 /* Production - Debug */,
+				AA9556742BDBC46200E8FE28 /* Development - Release */,
+				AAC0BB412BED695A0000F0F0 /* Production - Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Development - Release";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AAC0BB452BED6D2D0000F0F0 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
+		AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AAC0BB462BED6D3E0000F0F0 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAC0BB452BED6D2D0000F0F0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
+		AAC5124C2BEE145E00986DF9 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		AAC5124E2BEE145E00986DF9 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		AAC512502BEE145E00986DF9 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		AAC512522BEE145E00986DF9 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AA95565C2BDBC46200E8FE28 /* Project object */;
 }
