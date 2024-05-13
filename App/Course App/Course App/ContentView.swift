@@ -8,7 +8,7 @@ import os
 import SwiftUI
 
 struct ContentView: View {
-    let fontSize: CGFloat = 100
+    let fontSize: CGFloat = 50
     let configuration = Configuration.default
     let logger = Logger()
     var body: some View {
