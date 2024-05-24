@@ -4,32 +4,25 @@
 //
 //  Created by Christián on 26/04/2024.
 //
-
+import os
 import SwiftUI
 
 struct ContentView: View {
-<<<<<<< Updated upstream:App/Course App/Course App/ContentView.swift
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-=======
     enum MagicNumbers: CGFloat {
         case numberTen = 10
         case numebrFive = 5
         
         func asCGFloat() -> CGFloat {
-            CGFloat(self.rawValue)
+            return CGFloat(self.rawValue)
         }
     }
     
-    @StateObject private var dataProvider = MockDataProvider()
+    @StateObject var dataProvider = MockDataProvider()
     let logger = Logger()
     var body: some View {
+        
 #if DEBUG
-    ContentView._printChanges()
+        ContentView._printChanges()
 #endif
         
         return List {
@@ -59,7 +52,6 @@ struct ContentView: View {
                 .background(.bg)
                 .listRowInsets(EdgeInsets())
             }
->>>>>>> Stashed changes:App/Course App/Course App/Views/SwiftUI/ContentView.swift
         }
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
@@ -73,13 +65,13 @@ struct ContentView: View {
             Spacer()
             
             Button {
-                debugPrint("Tapped button")
+                print("Tapped button")
             } label: {
                 Image(systemName: "heart")
             }
-            .buttonStyle(SelectableButtonStyle(color: .gray, isSelected: .constant(true)))
+            .buttonStyle(SelectableButtonStyle(color: .gray , isSelected: .constant(true)))
         }
-        .padding(MagicNumbers.numebrFive.rawValue)
+        .padding(5)
     }
 }
 

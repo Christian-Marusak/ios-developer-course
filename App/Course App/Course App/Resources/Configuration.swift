@@ -1,5 +1,5 @@
 //
-//  BuildConfiguration.swift
+//  Configuration.swift
 //  Course App
 //
 //  Created by Christián on 11/05/2024.

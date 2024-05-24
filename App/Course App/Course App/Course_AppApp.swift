@@ -5,13 +5,9 @@
 //  Created by Christián on 26/04/2024.
 //
 
-<<<<<<< Updated upstream
-import SwiftUI
-
-=======
 import FirebaseCore
-import os
 import SwiftUI
+import os
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(
@@ -25,14 +21,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 
->>>>>>> Stashed changes
 @main
+// swiftlint:disable:next type_name
 struct Course_AppApp: App {
-<<<<<<< Updated upstream
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-=======
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     private let logger = Logger()
     
@@ -40,10 +31,9 @@ struct Course_AppApp: App {
         WindowGroup {
             MainTabView()
                 .ignoresSafeArea(edges: .all)
-                .onAppear {
+                .onAppear{
                     logger.info("Content view has appeared")
                 }
->>>>>>> Stashed changes
         }
     }
 }

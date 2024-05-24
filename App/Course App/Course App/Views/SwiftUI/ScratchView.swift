@@ -13,33 +13,22 @@ struct Line {
 }
 
 struct ScratchView: View {
-    // MARK: Variables
+    //MARK: Variables
     let image: Image
     let text: String
-    
-    enum MagicNumbers: CGFloat {
-        case number10 = 10
-        case number1point2 = 1.2
-        case number1point5 = 1.5
-        
-        func asCGFloat() -> CGFloat {
-            CGFloat(self.rawValue)
-        }
-        func asInt() -> Int {
-            Int(self.rawValue)
-        }
-    }
     
     @State private var currentLine = Line()
     @State private var lines = [Line]()
     
+    
+    
     var body: some View {
         ZStack(alignment: .top) {
             image
-                .resizableBordered(cornerRadius: MagicNumbers.number10.rawValue)
+                .resizableBordered(cornerRadius: 10)
                 .scaledToFit()
             
-            RoundedRectangle(cornerRadius: MagicNumbers.number10.rawValue)
+            RoundedRectangle(cornerRadius: 10 )
                 .fill(.bg)
                 .overlay {
                     Text(text)
@@ -47,15 +36,12 @@ struct ScratchView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                 }
-                .mask(
+                .mask (
                     Canvas { context, _ in
                         for line in lines {
                             var path = Path()
                             path.addLines(line.points)
-                            context.stroke(
-                                path, with: .color(.white), style: StrokeStyle(
-                                    lineWidth: line.lineWidth, lineCap: .round, lineJoin: .round
-                                )
+                            context.stroke(path, with: .color(.white), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round, lineJoin: .round)
                             )
                         }
                     }
@@ -65,7 +51,7 @@ struct ScratchView: View {
     }
     
     private var dragGesture: some Gesture {
-        DragGesture(minimumDistance: .zero, coordinateSpace: .local)
+        DragGesture(minimumDistance: 0,coordinateSpace: .local)
             .onChanged { value in
                 let newPoint = value.location
                 currentLine.points.append(newPoint)

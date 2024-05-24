@@ -3,6 +3,7 @@
 //
 //  Created by Christián on 19/05/2024.
 //
+
 import SwiftUI
 
 extension Image {

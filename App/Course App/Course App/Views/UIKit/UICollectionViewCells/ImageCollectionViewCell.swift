@@ -9,15 +9,12 @@
 import UIKit
 
 final class ImageCollectionViewCell: UICollectionViewCell {
-    enum MagicNumbers: CGFloat {
-        case number10 = 10
-        case number5 = 5
-    }
+    let padding: CGFloat = 5
     
     // MARK: UI items
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = MagicNumbers.number10.rawValue
+        imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -61,19 +58,19 @@ private extension ImageCollectionViewCell {
             [
                 imageView.leadingAnchor.constraint(
                     equalTo: leadingAnchor,
-                    constant: MagicNumbers.number5.rawValue
+                    constant: padding
                 ),
                 imageView.topAnchor.constraint(
                     equalTo: topAnchor,
-                    constant: MagicNumbers.number5.rawValue
+                    constant: padding
                 ),
                 imageView.bottomAnchor.constraint(
                     equalTo: bottomAnchor,
-                    constant: -MagicNumbers.number5.rawValue
+                    constant: -padding
                 ),
                 imageView.trailingAnchor.constraint(
                     equalTo: trailingAnchor,
-                    constant: -MagicNumbers.number5.rawValue
+                    constant: -padding
                 )
             ]
         )

@@ -57,7 +57,7 @@ private extension MainTabBarController {
 //        appearance.backgroundColor = .brown
 //        appearance.shadowImage = UIImage()
 //        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.bold(with: .size28)]
-//        
+//
 //        categoriesNavigationController.navigationBar.standardAppearance = appearance
 //        categoriesNavigationController.navigationBar.compactAppearance = appearance
 //        categoriesNavigationController.navigationBar.scrollEdgeAppearance = appearance

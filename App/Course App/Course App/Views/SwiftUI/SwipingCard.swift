@@ -8,22 +8,6 @@
 import SwiftUI
 typealias Action<T> = (T) -> Void
 struct SwipingCard: View {
-    enum MagicNumbers: CGFloat {
-        case number10 = 10
-        case number5 = 5
-        case number8 = 8
-        case number3 = 3
-        case number4 = 4
-        case number30 = 30
-        case numberPoint7 = 0.7
-        case numberPoint5 = 0.5
-        case numberPoint6 = 0.6
-        case number15 = 15
-        case number40 = 40
-        case number500 = 500
-        case number200 = 200
-        case number60 = 60
-    }
     
     enum SwipeDirection {
         case left
@@ -36,7 +20,7 @@ struct SwipingCard: View {
         case cancelled
     }
     
-    // MARK: Config
+    //MARK: Config
     public struct Configuration: Equatable {
         let image: Image
         let title: String
@@ -55,19 +39,21 @@ struct SwipingCard: View {
     private let swipingAction: Action<SwipeState>
     private let configuration: Configuration
     @State private var offset: CGSize = .zero
-    @State private var color: Color = .black.opacity(MagicNumbers.numberPoint7.rawValue)
+    @State private var color: Color = .black.opacity(0.7)
     
     public init(configuration: Configuration, swipeStateAction: @escaping (Action<SwipeState>)) {
+        
         self.configuration = configuration
         self.swipingAction = swipeStateAction
     }
-// MARK: View
+//MARK: View
+    
     var body: some View {
         HStack {
-            Spacer()
-            VStack {
+             Spacer()
+            VStack{
                 Spacer()
-                    // scratchView
+                    //scratchView
                 ScratchView(image: configuration.image, text: configuration.description)
                 Spacer()
                 cardDescription
@@ -75,13 +61,13 @@ struct SwipingCard: View {
             Spacer()
         }
         .background(color)
-        .cornerRadius(MagicNumbers.number15.rawValue)
-        .offset(x: offset.width, y: offset.height * MagicNumbers.numberPoint5.rawValue)
-        .rotationEffect(.degrees(Double(offset.width / MagicNumbers.number40.rawValue)))
+        .cornerRadius(15)
+        .offset(x: offset.width, y: offset.height * 0.5)
+        .rotationEffect(.degrees(Double(offset.width / 40)))
         .gesture(dragGesture)
     }
     
-    // MARK: Drag Gesture
+    //MARK: Drag Gesture
     
     private var dragGesture: some Gesture {
         DragGesture()
@@ -98,52 +84,59 @@ struct SwipingCard: View {
             }
     }
     
-    // MARK: Card Description
+    //MARK: Card Description
     private var cardDescription: some View {
         Text(configuration.title)
             .foregroundStyle(.white)
-            .textTypeModifier(textType: .h2Title)
-            .padding(MagicNumbers.number10.rawValue)
-            .background(Color.black.opacity(MagicNumbers.numberPoint5.rawValue))
-            .cornerRadius(MagicNumbers.number10.rawValue)
+            .fontWeight(.bold)
+            .padding(10)
+            .background(Color.black.opacity(0.5))
+            .cornerRadius(10)
             .padding()
     }
 }
 
 
-// MARK: Swipe Logic
+//MARK: Swipe Logic
 private extension SwipingCard {
     func finishSwipe(translation: CGSize) {
         // swipe left
-        if -MagicNumbers.number500.rawValue...(-MagicNumbers.number200.rawValue) ~= translation.width {
-            offset = CGSize(width: -MagicNumbers.number500.rawValue, height: .zero)
+        if -500...(-200) ~= translation.width {
+            offset = CGSize(width: -500, height: 0)
             swipingAction(.finished(direction: .left))
-        } else if MagicNumbers.number200.rawValue...MagicNumbers.number500.rawValue ~= translation.width { // swipe right
-            offset = CGSize(width: MagicNumbers.number500.rawValue, height: .zero)
+        } else if 200...500 ~= translation.width  { //swipe right
+            offset = CGSize(width: 500, height: 0)
             swipingAction(.finished(direction: .right))
         } else {
             offset = .zero
-            color = .bg.opacity(MagicNumbers.numberPoint7.rawValue)
+            color = .bg.opacity(0.7)
             swipingAction(.cancelled)
         }
     }
     
     func swiping(translation: CGSize) {
-        // swipe left
-        if translation.width < -MagicNumbers.number60.rawValue {
+        //swipe left
+        if translation.width < -60 {
             color = .green
-                .opacity(Double(abs(translation.width) / MagicNumbers.number500.rawValue) + MagicNumbers.numberPoint6.rawValue)
+                .opacity(Double(abs(translation.width) / 500) + 0.6)
             swipingAction(.swiping(direction: .left))
-        } else if translation.width > MagicNumbers.number60.rawValue {
-            color = .red
-                .opacity(Double(translation.width / MagicNumbers.number500.rawValue) + MagicNumbers.numberPoint6.rawValue) // swipe right
+        } else if translation.width > 60 {
+                color = .red
+                    .opacity(Double(translation.width / 500) + 0.6) //swipe right
             swipingAction(.swiping(direction: .right))
         } else {
-            color = .bg.opacity(MagicNumbers.numberPoint7.rawValue)
+            color = .bg.opacity(0.7)
             swipingAction(.cancelled)
         }
     }
 }
+
+
+
+
+
+
+
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
         SwipingCard(
