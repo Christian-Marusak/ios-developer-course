@@ -11,6 +11,10 @@ import SwiftUI
 protocol OnboardingCoordinating: NavigationControllerCoordinator {}
 
 final class OnboardingNavigationCoordinator: OnboardingCoordinating {
+    func handleDeepling(deeplink: Deeplink) {
+        
+    }
+    
     
     deinit {
         print("Deinit OnboardingNavigationCoordinator")
