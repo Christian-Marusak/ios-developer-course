@@ -42,6 +42,15 @@
 		AACAED6F2BF20F9500DAE915 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AACAED6C2BF20F9500DAE915 /* Poppins-Regular.ttf */; };
 		AACAED702BF20F9500DAE915 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AACAED6D2BF20F9500DAE915 /* Poppins-MediumItalic.ttf */; };
 		AAF116962C00EF6E002B1312 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116952C00EF6E002B1312 /* HeaderView.swift */; };
+		AAF116992C0119A1002B1312 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116982C0119A1002B1312 /* Coordinator.swift */; };
+		AAF1169B2C011ADF002B1312 /* ViewControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1169A2C011ADF002B1312 /* ViewControllerCoordinator.swift */; };
+		AAF1169D2C011C39002B1312 /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1169C2C011C39002B1312 /* MainTabBarCoordinator.swift */; };
+		AAF1169F2C01240B002B1312 /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1169E2C01240B002B1312 /* CoordinatorView.swift */; };
+		AAF116A12C012A18002B1312 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116A02C012A18002B1312 /* AppCoordinator.swift */; };
+		AAF116A32C01DAFA002B1312 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116A22C01DAFA002B1312 /* OnboardingView.swift */; };
+		AAF116A52C01DB65002B1312 /* OnboardingNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116A42C01DB65002B1312 /* OnboardingNavigationCoordinator.swift */; };
+		AAF116A72C01DB85002B1312 /* SwipingNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116A62C01DB85002B1312 /* SwipingNavigationCoordinator.swift */; };
+		AAF116A92C01DFDA002B1312 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116A82C01DFDA002B1312 /* CustomNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +108,15 @@
 		AACAED6C2BF20F9500DAE915 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		AACAED6D2BF20F9500DAE915 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		AAF116952C00EF6E002B1312 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		AAF116982C0119A1002B1312 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		AAF1169A2C011ADF002B1312 /* ViewControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCoordinator.swift; sourceTree = "<group>"; };
+		AAF1169C2C011C39002B1312 /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
+		AAF1169E2C01240B002B1312 /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
+		AAF116A02C012A18002B1312 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		AAF116A22C01DAFA002B1312 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		AAF116A42C01DB65002B1312 /* OnboardingNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AAF116A62C01DB85002B1312 /* SwipingNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AAF116A82C01DFDA002B1312 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,10 +264,11 @@
 			isa = PBXGroup;
 			children = (
 				AA9556692BDBC46200E8FE28 /* ContentView.swift */,
-				AA2C98512BFA13BB00B28911 /* SwipingView.swift */,
-				AA2C98532BFA18CD00B28911 /* SwipingCard.swift */,
-				AA2C98552BFBED8900B28911 /* ScratchView.swift */,
 				AAF116952C00EF6E002B1312 /* HeaderView.swift */,
+				AAF116A22C01DAFA002B1312 /* OnboardingView.swift */,
+				AA2C98552BFBED8900B28911 /* ScratchView.swift */,
+				AA2C98532BFA18CD00B28911 /* SwipingCard.swift */,
+				AA2C98512BFA13BB00B28911 /* SwipingView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -261,6 +280,7 @@
 				AA4F36FB2BF25261006A6D2F /* HomeViewController.swift */,
 				AA4F36FC2BF25261006A6D2F /* HomeViewController.xib */,
 				AA82E14F2BFCD6C900B0A1C3 /* MainTabBarController.swift */,
+				AAF116A82C01DFDA002B1312 /* CustomNavigationController.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -288,6 +308,7 @@
 		AA9556662BDBC46200E8FE28 /* Course App */ = {
 			isa = PBXGroup;
 			children = (
+				AAF116972C01198E002B1312 /* Navigation */,
 				AA2C98462BFA077300B28911 /* SharedUI */,
 				AA35932B2BF3619E0043B663 /* Common */,
 				AA2006FE2BF29A4A001FFD10 /* DataAPI */,
@@ -307,6 +328,20 @@
 				AA95566E2BDBC46200E8FE28 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AAF116972C01198E002B1312 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				AAF116982C0119A1002B1312 /* Coordinator.swift */,
+				AAF1169A2C011ADF002B1312 /* ViewControllerCoordinator.swift */,
+				AAF1169C2C011C39002B1312 /* MainTabBarCoordinator.swift */,
+				AAF116A02C012A18002B1312 /* AppCoordinator.swift */,
+				AAF1169E2C01240B002B1312 /* CoordinatorView.swift */,
+				AAF116A42C01DB65002B1312 /* OnboardingNavigationCoordinator.swift */,
+				AAF116A62C01DB85002B1312 /* SwipingNavigationCoordinator.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,13 +516,22 @@
 				AA2C98542BFA18CD00B28911 /* SwipingCard.swift in Sources */,
 				AAF116962C00EF6E002B1312 /* HeaderView.swift in Sources */,
 				AA2C984B2BFA0ADB00B28911 /* ResizeableBordered.swift in Sources */,
+				AAF116A72C01DB85002B1312 /* SwipingNavigationCoordinator.swift in Sources */,
 				AAAF835F2BF3D4A9006333F4 /* HorizontalCollectionCollectionViewCell.swift in Sources */,
+				AAF116A52C01DB65002B1312 /* OnboardingNavigationCoordinator.swift in Sources */,
 				AA2007002BF29A5F001FFD10 /* MockDataProvider.swift in Sources */,
+				AAF1169F2C01240B002B1312 /* CoordinatorView.swift in Sources */,
+				AAF1169B2C011ADF002B1312 /* ViewControllerCoordinator.swift in Sources */,
+				AAF116A12C012A18002B1312 /* AppCoordinator.swift in Sources */,
 				AA2C98492BFA079800B28911 /* BorderedModifier.swift in Sources */,
+				AAF116A32C01DAFA002B1312 /* OnboardingView.swift in Sources */,
 				AA35932A2BF35CCB0043B663 /* LabelCollectionViewCell.swift in Sources */,
+				AAF116992C0119A1002B1312 /* Coordinator.swift in Sources */,
 				AA7CF9A62BF3ACB9001B2E1B /* ImageCollectionViewCell.swift in Sources */,
+				AAF116A92C01DFDA002B1312 /* CustomNavigationController.swift in Sources */,
 				AA3BCAFB2BFD1C0300334E82 /* DesignSystem.swift in Sources */,
 				AA2C984E2BFA0D2800B28911 /* SelectableButtonStyle.swift in Sources */,
+				AAF1169D2C011C39002B1312 /* MainTabBarCoordinator.swift in Sources */,
 				AA9556682BDBC46200E8FE28 /* Course_AppApp.swift in Sources */,
 				AA4F36FD2BF25261006A6D2F /* HomeViewController.swift in Sources */,
 				AA2C98562BFBED8900B28911 /* ScratchView.swift in Sources */,
