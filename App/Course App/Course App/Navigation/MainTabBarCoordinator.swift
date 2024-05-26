@@ -7,10 +7,12 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 final class MainTabBarCoordinator: NSObject, TabBarControllerCoordinator {
     var childCoordinators = [Coordinator]()
     private(set) lazy var tabBarController = makeTabBarController()
+    private lazy var cancellables = Set<AnyCancellable>()
 }
 
 // MARK: -Start coordinator
@@ -18,7 +20,8 @@ extension MainTabBarCoordinator {
     func start() {
         tabBarController.viewControllers = [
             setupCategoriesView(),
-            setupSwipingCardView()
+            setupSwipingCardView(),
+            setupProfileView()
         ]
     }
     func handleDeepling(deeplink: Deeplink) {
@@ -30,18 +33,28 @@ extension MainTabBarCoordinator {
         default:
             break
         }
+        
+        childCoordinators.forEach{ $0.handleDeepling(deeplink: deeplink) }
     }
 }
 
 // MARK: Factory Method
 private extension MainTabBarCoordinator {
-    
-    
-
-    
     func makeOnboardingFlow() -> ViewControllerCoordinator {
         let coordinator = OnboardingNavigationCoordinator()
+        
+        coordinator.eventPublisher.sink { [weak self] myEvent in
+            self?.handle(event: myEvent)
+        }
+        .store(in: &cancellables)
         return coordinator
+    }
+    
+    func handle(event: OnboardingNavigationEvent) {
+        switch event {
+        case let .dismiss(coordinator):
+            release(coordinator: coordinator)
+        }
     }
 
 
@@ -56,17 +69,6 @@ private extension MainTabBarCoordinator {
         let categoriesNavigationController = UINavigationController(rootViewController: HomeViewController())
         categoriesNavigationController.tabBarItem = UITabBarItem(title: "Categories", image: UIImage(systemName: "list.dash.header.rectangle"), tag: 0)
         
-        
-//        let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = .brown
-//        appearance.shadowImage = UIImage()
-//        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.bold(with: .size28)]
-//
-//        categoriesNavigationController.navigationBar.standardAppearance = appearance
-//        categoriesNavigationController.navigationBar.compactAppearance = appearance
-//        categoriesNavigationController.navigationBar.scrollEdgeAppearance = appearance
-//        categoriesNavigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.bold(with: .size28)]
-        
     return categoriesNavigationController
     }
     
@@ -79,20 +81,32 @@ private extension MainTabBarCoordinator {
         vcon.title = "Scratch view"
         
         swipingCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(systemName: "switch.2"), tag: 1)
-        swipingCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold(with: .size20), .foregroundColor: UIColor.blue], for: .normal)
-//        swipingNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold(with: .size20), .foregroundColor: UIColor.red], for: .selected)
+        swipingCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .medium)], for: .normal)
         
     let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .brown
         appearance.shadowImage = UIImage()
-        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.futura(with: .size28)]
-        
-//        swipingNavigationController.navigationBar.standardAppearance = appearance
-//        swipingNavigationController.navigationBar.compactAppearance = appearance
-//        swipingNavigationController.navigationBar.scrollEdgeAppearance = appearance
+        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .medium)]
         
         
         return swipingCoordinator.rootViewController
+    }
+    
+    func setupProfileView() -> UIViewController {
+        let profileView = ProfileNavigationCoordinator()
+        startChildCoordinator(profileView)
+        
+        let vcon = UIHostingController(rootView: ProfileView())
+        vcon.title = "Profile View"
+        profileView.rootViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
+        profileView.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold(with: .size20), .foregroundColor: UIColor.blue], for: .normal)
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .brown
+        appearance.shadowImage = UIImage()
+        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.futura(with: .size28)]
+    
+        return profileView.rootViewController
     }
     
 }

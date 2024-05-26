@@ -34,6 +34,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.appCoordinator.handleDeepling(deeplink: .onboarding(page: 2))
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
+            self?.appCoordinator.handleDeepling(deeplink: .closeOnboarding)
+        }
     }
     
 }

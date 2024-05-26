@@ -39,12 +39,19 @@ final class HorizontalCollectionCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    private var didTapCallback: Action<Joke>?
     
 }
 
 // MARK: - Public methods
 extension HorizontalCollectionCollectionViewCell {
+    
+    func configure(_ data: [Joke], callback: Action<Joke>? = nil) {
+        self.data = data
+        collectionView.reloadData()
+        self.didTapCallback = callback
+    }
+    
     func setData(_ data: [Joke]) {
         self.data = data
         collectionView.reloadData()
@@ -55,6 +62,7 @@ extension HorizontalCollectionCollectionViewCell {
 extension HorizontalCollectionCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        logger.info("Horizontal scrolling did select item \(indexPath)")
+        didTapCallback?(data[indexPath.row])
     }
 }
 

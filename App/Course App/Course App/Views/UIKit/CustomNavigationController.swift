@@ -7,8 +7,18 @@
 
 import Foundation
 import UIKit
+import Combine
+
 
 class CustomNavigationController: UINavigationController {
+    
+    enum CustomNavigationControllerEvent {
+        case dismiss
+        case swipeBack
+    }
+    
+    private let eventSubject = PassthroughSubject<CustomNavigationControllerEvent, Never>()
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +35,14 @@ class CustomNavigationController: UINavigationController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if isBeingDismissed {
-            //eventSubject.send(.dismising)
+            eventSubject.send(.dismiss)
         }
+    }
+}
+
+extension CustomNavigationController: EventEmitting {
+    var eventPublisher: AnyPublisher<CustomNavigationControllerEvent, Never> {
+        eventSubject.eraseToAnyPublisher()
     }
 }
 
