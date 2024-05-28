@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct OnboardingView: View {
-    
-    let coordinator = AppCoordinator()
-    var page: Int = 0
+    let coordinator = OnboardingNavigationCoordinator()
     
     var body: some View {
-        Text("Currently you are on page \(page)")
+        Text("Currently you are on page")
         Button(action: {
-            coordinator.handleDeepling(deeplink: .onboarding(page: 3))
+            
         }, label: {
             Text("Move to next screen")
         })

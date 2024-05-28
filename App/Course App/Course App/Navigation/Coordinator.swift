@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
@@ -15,12 +16,12 @@ protocol Coordinator: AnyObject {
 
 extension Coordinator {
     func release(coordinator: Coordinator){
-        childCoordinators.removeAll() { $0 === coordinator}
+        childCoordinators.removeAll { $0 === coordinator}
         
     }
     
     func startChildCoordinator(_ childCoordinator: Coordinator) {
-        childCoordinator.childCoordinators.append(childCoordinator)
+        childCoordinators.append(childCoordinator)
         childCoordinator.start()
     }
     

@@ -16,7 +16,7 @@ enum OnboardingNavigationEvent {
 }
 
 final class OnboardingNavigationCoordinator: OnboardingCoordinating {
-    
+
     func handleDeepling(deeplink: Deeplink) {
         switch deeplink {
         case.closeOnboarding:
@@ -53,9 +53,8 @@ extension OnboardingNavigationCoordinator {
     
     func start() {
         navigationController.setViewControllers(
-            [makeOnboardingView(), makeOnboardingView(), makeOnboardingView()], animated: false)
+            [makeOnboardingView(),makeOnboardingView(),makeOnboardingView()], animated: false)
     }
-    
 }
 
 extension OnboardingCoordinating {

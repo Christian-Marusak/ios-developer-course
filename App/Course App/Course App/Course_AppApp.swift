@@ -6,9 +6,10 @@
 //
 
 import FirebaseCore
+import UIKit
 import SwiftUI
 import os
-
+//
 enum Deeplink {
     case onboarding(page: Int)
     case closeOnboarding
@@ -34,9 +35,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.appCoordinator.handleDeepling(deeplink: .onboarding(page: 2))
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
-            self?.appCoordinator.handleDeepling(deeplink: .closeOnboarding)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
+//            self?.appCoordinator.handleDeepling(deeplink: .closeOnboarding)
+//        }
     }
     
 }

@@ -31,15 +31,19 @@ extension AppCoordinator {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.bold(with: .size28), .foregroundColor: UIColor.blue]
     }
     
+    
+    func handleDeepling(deeplink: Deeplink) {
+        childCoordinators.forEach{ $0.handleDeepling(deeplink: deeplink )}
+    }
+}
+
+
+// MARK: - Factory methods
+private extension AppCoordinator {
     func makeTabBarFlow() -> UIViewController {
         let coordinator = MainTabBarCoordinator()
         childCoordinators.append(coordinator)
         coordinator.start()
         return coordinator.rootViewController
-    }
-    
-    
-    func handleDeepling(deeplink: Deeplink) {
-        childCoordinators.forEach{ $0.handleDeepling(deeplink: deeplink )}
     }
 }
