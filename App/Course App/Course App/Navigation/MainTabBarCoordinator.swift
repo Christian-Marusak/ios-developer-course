@@ -121,7 +121,7 @@ extension MainTabBarCoordinator: UITabBarControllerDelegate {
 
 extension UIViewController {
     func showInfoAlert(title: String, message: String? = nil, handler: (() -> Void)? = nil) {
-        guard present == nil else {
+        guard presentedViewController == nil else {
             return
         }
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

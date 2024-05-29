@@ -9,14 +9,32 @@ import UIKit
 import SwiftUI
 import Combine
 
-protocol OnboardingCoordinating: NavigationControllerCoordinator {}
+protocol OnboardingCoordinating: NavigationControllerCoordinator {
+    func pushNewPage(from page: Int)
+}
 
 enum OnboardingNavigationEvent {
     case dismiss(Coordinator)
 }
 
 final class OnboardingNavigationCoordinator: OnboardingCoordinating {
+    
+    weak var parentCoordinator: (any Coordinator)?
+    
+   
+    static private(set) var numberOfPages: Int = 3
+    
+    func pushNewPage(from page: Int) {
+        let _ = page < Self.numberOfPages - 1 ? page + 1 : 0
+        if page < Self.numberOfPages - 1 {
+            navigationController.pushViewController(makeOnboardingView(page: page + 1), animated: true)
+        } else {
+            navigationController.setViewControllers([makeOnboardingView(page: 0)], animated: true)
+        }
+    }
+    
 
+    
     func handleDeepling(deeplink: Deeplink) {
         switch deeplink {
         case.closeOnboarding:
@@ -36,10 +54,12 @@ final class OnboardingNavigationCoordinator: OnboardingCoordinating {
     
 }
 
-extension OnboardingNavigationCoordinator {
+private extension OnboardingNavigationCoordinator {
     
     func makeNavigationController() -> UINavigationController {
         let navigationController = CustomNavigationController()
+//        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.modalTransitionStyle = .crossDissolve
         navigationController.eventPublisher.sink { [weak self] event in
             guard let self else {
                 return
@@ -50,21 +70,17 @@ extension OnboardingNavigationCoordinator {
         
         return navigationController
     }
-    
-    func start() {
-        navigationController.setViewControllers(
-            [makeOnboardingView(),makeOnboardingView(),makeOnboardingView()], animated: false)
-    }
+
 }
 
-extension OnboardingCoordinating {
-    func makeOnboardingView() -> UIViewController {
-        let controller = UIHostingController(rootView: OnboardingView())
-        
-        controller.modalPresentationStyle = .fullScreen
-        controller.modalTransitionStyle = .crossDissolve
-        
-        return controller
+extension OnboardingNavigationCoordinator {
+    func start() {
+        navigationController.setViewControllers(
+            [makeOnboardingView(page: 0)], animated: false)
+    }
+    
+    func makeOnboardingView(page: Int) -> UIViewController {
+        UIHostingController(rootView: OnboardingView(coordinator: self, page: page))
     }
 }
 
