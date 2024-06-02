@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AA04B29C2BEFE97800532B72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC512492BEE13AA00986DF9 /* GoogleService-Info.plist */; };
+		AA1858442C0C7F3E006F84E4 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858432C0C7F3E006F84E4 /* InputView.swift */; };
+		AA1858462C0C7FB7006F84E4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858452C0C7FB7006F84E4 /* LoginView.swift */; };
 		AA2007002BF29A5F001FFD10 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */; };
 		AA2C98492BFA079800B28911 /* BorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C98482BFA079800B28911 /* BorderedModifier.swift */; };
 		AA2C984B2BFA0ADB00B28911 /* ResizeableBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C984A2BFA0ADB00B28911 /* ResizeableBordered.swift */; };
@@ -74,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA1858432C0C7F3E006F84E4 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		AA1858452C0C7FB7006F84E4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
 		AA2C98482BFA079800B28911 /* BorderedModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedModifier.swift; sourceTree = "<group>"; };
 		AA2C984A2BFA0ADB00B28911 /* ResizeableBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeableBordered.swift; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 				AA2C98532BFA18CD00B28911 /* SwipingCard.swift */,
 				AA2C98512BFA13BB00B28911 /* SwipingView.swift */,
 				AA91805A2C03BB1A00B3D5A0 /* ProfileView.swift */,
+				AA1858432C0C7F3E006F84E4 /* InputView.swift */,
+				AA1858452C0C7FB7006F84E4 /* LoginView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 				AA91805B2C03BB1A00B3D5A0 /* ProfileView.swift in Sources */,
 				AA35932A2BF35CCB0043B663 /* LabelCollectionViewCell.swift in Sources */,
 				AAF116992C0119A1002B1312 /* Coordinator.swift in Sources */,
+				AA1858442C0C7F3E006F84E4 /* InputView.swift in Sources */,
 				AA9180572C03539D00B3D5A0 /* EventEmittier.swift in Sources */,
 				AA7CF9A62BF3ACB9001B2E1B /* ImageCollectionViewCell.swift in Sources */,
 				AAF116A92C01DFDA002B1312 /* CustomNavigationController.swift in Sources */,
@@ -546,6 +553,7 @@
 				AAF1169D2C011C39002B1312 /* MainTabBarCoordinator.swift in Sources */,
 				AA9556682BDBC46200E8FE28 /* Course_AppApp.swift in Sources */,
 				AA4F36FD2BF25261006A6D2F /* HomeViewController.swift in Sources */,
+				AA1858462C0C7FB7006F84E4 /* LoginView.swift in Sources */,
 				AA2C98562BFBED8900B28911 /* ScratchView.swift in Sources */,
 				AA82E1502BFCD6C900B0A1C3 /* MainTabBarController.swift in Sources */,
 			);

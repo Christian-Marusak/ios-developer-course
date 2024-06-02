@@ -59,7 +59,7 @@ enum TextType {
     var color: Color {
         switch self {
         case .h1Title:
-    .white
+    .black
         default:
     .gray
         }

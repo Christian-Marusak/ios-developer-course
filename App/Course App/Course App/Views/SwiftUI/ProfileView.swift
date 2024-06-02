@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    weak var coordinator: OnboardingNavigationCoordinator?
+//    var coordinator: ProfileNavigationCoordinator?
     
     var body: some View {
         Text("Profile View")
         Button(action: {
-            self.coordinator?.handleDeepling(deeplink: .onboarding(page: 1))
+//            ProfileNavigationCoordinator().
         }, label: {
-            Text("Start onboarding")
+            Text("Start onboarding inside profile view")
         })
     }
 }
