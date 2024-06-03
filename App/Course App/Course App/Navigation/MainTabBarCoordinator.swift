@@ -9,9 +9,14 @@ import UIKit
 import SwiftUI
 import Combine
 
+enum MainTabBarCoordinatorEvent {
+    case logout(_ coordinator: MainTabBarCoordinator)
+}
+
 final class MainTabBarCoordinator: NSObject, TabBarControllerCoordinator {
     var childCoordinators = [Coordinator]()
     private(set) lazy var tabBarController = makeTabBarController()
+    private var eventSubject = PassthroughSubject<MainTabBarCoordinatorEvent, Never>()
     private lazy var cancellables = Set<AnyCancellable>()
 }
 
@@ -117,6 +122,13 @@ extension MainTabBarCoordinator: UITabBarControllerDelegate {
 //            rootViewController.showInfoAlert(title: "Up something is wrong...")
         }
     }
+}
+
+extension MainTabBarCoordinator: EventEmitting {
+    var eventPublisher: AnyPublisher<MainTabBarCoordinatorEvent, Never> {
+        eventSubject.eraseToAnyPublisher()
+    }
+    
 }
 
 extension UIViewController {

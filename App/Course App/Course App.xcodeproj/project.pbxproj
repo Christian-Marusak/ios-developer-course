@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA04B29C2BEFE97800532B72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC512492BEE13AA00986DF9 /* GoogleService-Info.plist */; };
+		3702F4C92C0CE0BE00547E78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3702F4C82C0CE0BE00547E78 /* GoogleService-Info.plist */; };
+		3702F4CD2C0CE7A600547E78 /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702F4CC2C0CE7A600547E78 /* LoginFlowCoordinator.swift */; };
 		AA1858442C0C7F3E006F84E4 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858432C0C7F3E006F84E4 /* InputView.swift */; };
 		AA1858462C0C7FB7006F84E4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858452C0C7FB7006F84E4 /* LoginView.swift */; };
 		AA2007002BF29A5F001FFD10 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */; };
@@ -76,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3702F4C82C0CE0BE00547E78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3702F4CC2C0CE7A600547E78 /* LoginFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowCoordinator.swift; sourceTree = "<group>"; };
 		AA1858432C0C7F3E006F84E4 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		AA1858452C0C7FB7006F84E4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
@@ -113,7 +116,6 @@
 		AA95566E2BDBC46200E8FE28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AAAF835E2BF3D4A9006333F4 /* HorizontalCollectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAC0BB442BED6C720000F0F0 /* Course-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Course-App-Info.plist"; sourceTree = SOURCE_ROOT; };
-		AAC512492BEE13AA00986DF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AACAED6B2BF20F9500DAE915 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		AACAED6C2BF20F9500DAE915 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		AACAED6D2BF20F9500DAE915 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -158,6 +160,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3702F4CA2C0CE6F400547E78 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				3702F4CB2C0CE72700547E78 /* LoginFlow */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		3702F4CB2C0CE72700547E78 /* LoginFlow */ = {
+			isa = PBXGroup;
+			children = (
+				3702F4CC2C0CE7A600547E78 /* LoginFlowCoordinator.swift */,
+				AA1858452C0C7FB7006F84E4 /* LoginView.swift */,
+			);
+			path = LoginFlow;
+			sourceTree = "<group>";
+		};
 		AA04B29D2BEFEAFE00532B72 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,7 +256,6 @@
 		AA42FA0B2BED1C280001BCE9 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				AAC512492BEE13AA00986DF9 /* GoogleService-Info.plist */,
 				AA42FA282BED1D5C0001BCE9 /* Development.xcconfig */,
 				AA42FA292BED1E5F0001BCE9 /* Production.xcconfig */,
 			);
@@ -281,7 +299,6 @@
 				AA2C98512BFA13BB00B28911 /* SwipingView.swift */,
 				AA91805A2C03BB1A00B3D5A0 /* ProfileView.swift */,
 				AA1858432C0C7F3E006F84E4 /* InputView.swift */,
-				AA1858452C0C7FB7006F84E4 /* LoginView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -321,6 +338,7 @@
 		AA9556662BDBC46200E8FE28 /* Course App */ = {
 			isa = PBXGroup;
 			children = (
+				3702F4CA2C0CE6F400547E78 /* Screens */,
 				AAF116972C01198E002B1312 /* Navigation */,
 				AA2C98462BFA077300B28911 /* SharedUI */,
 				AA35932B2BF3619E0043B663 /* Common */,
@@ -328,6 +346,7 @@
 				AA04B29D2BEFEAFE00532B72 /* Resources */,
 				AAC0BB442BED6C720000F0F0 /* Course-App-Info.plist */,
 				AA9556672BDBC46200E8FE28 /* Course_AppApp.swift */,
+				3702F4C82C0CE0BE00547E78 /* GoogleService-Info.plist */,
 				AA42FA0B2BED1C280001BCE9 /* Configuration */,
 				AA4F36F62BF25026006A6D2F /* Views */,
 				AA95566D2BDBC46200E8FE28 /* Preview Content */,
@@ -491,9 +510,9 @@
 				AACAED702BF20F9500DAE915 /* Poppins-MediumItalic.ttf in Resources */,
 				AA3BCAFD2BFDCB7100334E82 /* Futura-Bold-Italic-font.ttf in Resources */,
 				AA95566C2BDBC46200E8FE28 /* Images.xcassets in Resources */,
-				AA04B29C2BEFE97800532B72 /* GoogleService-Info.plist in Resources */,
 				AACAED6E2BF20F9500DAE915 /* Poppins-Bold.ttf in Resources */,
 				AACAED6F2BF20F9500DAE915 /* Poppins-Regular.ttf in Resources */,
+				3702F4C92C0CE0BE00547E78 /* GoogleService-Info.plist in Resources */,
 				AA4F36FA2BF250C0006A6D2F /* Colors.xcassets in Resources */,
 				AA4F36FE2BF25261006A6D2F /* HomeViewController.xib in Resources */,
 			);
@@ -523,6 +542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3702F4CD2C0CE7A600547E78 /* LoginFlowCoordinator.swift in Sources */,
 				AA6275B12BEFE1B800646C3E /* Configuration.swift in Sources */,
 				AA35932F2BF3777F0043B663 /* ReusableIdentifier.swift in Sources */,
 				AA35932D2BF361D80043B663 /* UICollectionView+ReusableIdentifier.swift in Sources */,

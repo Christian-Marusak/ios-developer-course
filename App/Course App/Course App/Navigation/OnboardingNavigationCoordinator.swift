@@ -33,8 +33,6 @@ final class OnboardingNavigationCoordinator: OnboardingCoordinating {
         }
     }
     
-
-    
     func handleDeepling(deeplink: Deeplink) {
         switch deeplink {
         case.closeOnboarding:

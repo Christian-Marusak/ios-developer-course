@@ -17,11 +17,7 @@ enum Deeplink {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    let appCoordinator: some AppCoordinating = {
-        let coordinator = AppCoordinator()
-        coordinator.start()
-        return coordinator
-    }()
+   
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -47,15 +43,29 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 // swiftlint:disable:next type_name
 struct Course_AppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @ObservedObject var appCoordinator = AppCoordinator()
+    
     private let logger = Logger()
+    
+    init() {
+        appCoordinator.start()
+    }
     
     var body: some Scene {
         WindowGroup {
-            CoordinatorView(coordinator: delegate.appCoordinator)
+            rootView
                 .ignoresSafeArea(edges: .all)
                 .onAppear{
                     logger.info("Content view has appeared")
                 }
+        }
+    }
+    
+    @ViewBuilder var rootView: some View {
+        if appCoordinator.isAuthorizedFlow {
+            CoordinatorView(coordinator: appCoordinator)
+        } else {
+            CoordinatorView(coordinator: appCoordinator)
         }
     }
 }

@@ -7,11 +7,23 @@
 
 import Foundation
 import UIKit
+import Combine
 
 protocol AppCoordinating: ViewControllerCoordinator {}
 
-final class AppCoordinator: AppCoordinating {
-    private(set) lazy var rootViewController = makeTabBarFlow()
+final class AppCoordinator: AppCoordinating, ObservableObject {
+    @Published var isAuthorizedFlow: Bool = false
+    
+    init() {
+        if isAuthorizedFlow {
+            rootViewController = makeTabBarFlow()
+        } else {
+            rootViewController = makeLoginFlow()
+        }
+    }
+    
+    private(set) var rootViewController: UIViewController = UIViewController()
+    private lazy var cancellables = Set<AnyCancellable>()
     
     var childCoordinators = [Coordinator]()
 }
@@ -20,6 +32,7 @@ final class AppCoordinator: AppCoordinating {
 // MARK: - Start coordinator
 
 extension AppCoordinator {
+    
     func start() {
         setupAppUI()
     }
@@ -40,10 +53,44 @@ extension AppCoordinator {
 
 // MARK: - Factory methods
 private extension AppCoordinator {
+    func makeLoginFlow() -> UIViewController {
+        let coordinator = LoginFlowCoordinator()
+        startChildCoordinator(coordinator)
+        coordinator.eventPublisher.sink { [weak self] event in
+            self?.handle(event)
+        }
+        .store(in: &cancellables)
+        return coordinator.rootViewController
+    }
+    
     func makeTabBarFlow() -> UIViewController {
         let coordinator = MainTabBarCoordinator()
-        childCoordinators.append(coordinator)
-        coordinator.start()
+        startChildCoordinator(coordinator)
+        coordinator.eventPublisher.sink { [weak self] event in
+            self?.handle(event)
+        }
+        .store(in: &cancellables)
         return coordinator.rootViewController
+    }
+    
+}
+
+private extension AppCoordinator {
+    func handle(_ event: MainTabBarCoordinatorEvent) {
+        switch event {
+        case .logout(let coordinator):
+            rootViewController = makeLoginFlow()
+            release(coordinator: coordinator)
+            isAuthorizedFlow = false
+        }
+    }
+    
+    func handle(_ event: SignInNavigationCoordinatorEvent) {
+        switch event {
+        case .login(let coordinator):
+            rootViewController = makeTabBarFlow()
+            release(coordinator: coordinator)
+            isAuthorizedFlow = true
+        }
     }
 }

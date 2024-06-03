@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
-
-import SwiftUI
+import Combine
 import FirebaseAuth
 // MARK: - User Interface of LoginView
 
 struct LoginView: View {
+    
+    enum LoginEvent {
+        case login
+    }
+    
+    private let eventSubject = PassthroughSubject<LoginEvent, Never>()
     @State var register: Bool = true
 //    var viewModel =
     
@@ -44,16 +49,17 @@ struct LoginView: View {
             
             VStack {
                 Button {
-                    if register {
-                        Task {
-//                            await callCreateUser()
-                        }
-                    } else {
-                        Task {
-//                            await callLoginUser()
-                        }
-                        print("Login")
-                    }
+//                    if register {
+//                        Task {
+////                            await callCreateUser()
+//                        }
+//                    } else {
+//                        Task {
+////                            await callLoginUser()
+//                        }
+//                        print("Login")
+//                    }
+                    eventSubject.send(.login)
                 } label: {
                     Text(register ? "register" : "login")
                         .animation(.easeIn, value: register)
@@ -78,6 +84,12 @@ struct LoginView: View {
         .padding()
         Spacer()
         
+    }
+}
+
+extension LoginView: EventEmitting {
+    var eventPublisher: AnyPublisher<LoginEvent, Never> {
+        eventSubject.eraseToAnyPublisher()
     }
 }
 
