@@ -25,5 +25,5 @@ extension Coordinator {
         childCoordinator.start()
     }
     
-    func handleDeeplink(deeplink: Deeplink) {}
+    func handleDeepling(deeplink: Deeplink) {}
 }

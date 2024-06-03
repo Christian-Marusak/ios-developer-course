@@ -47,6 +47,8 @@
 		AACAED6E2BF20F9500DAE915 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AACAED6B2BF20F9500DAE915 /* Poppins-Bold.ttf */; };
 		AACAED6F2BF20F9500DAE915 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AACAED6C2BF20F9500DAE915 /* Poppins-Regular.ttf */; };
 		AACAED702BF20F9500DAE915 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AACAED6D2BF20F9500DAE915 /* Poppins-MediumItalic.ttf */; };
+		AAE1C1672C0E64A400649296 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C1662C0E64A400649296 /* KeychainManager.swift */; };
+		AAE1C16B2C0E6B8C00649296 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE1C16A2C0E6B8C00649296 /* CustomError.swift */; };
 		AAF116962C00EF6E002B1312 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116952C00EF6E002B1312 /* HeaderView.swift */; };
 		AAF116992C0119A1002B1312 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF116982C0119A1002B1312 /* Coordinator.swift */; };
 		AAF1169B2C011ADF002B1312 /* ViewControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF1169A2C011ADF002B1312 /* ViewControllerCoordinator.swift */; };
@@ -119,6 +121,8 @@
 		AACAED6B2BF20F9500DAE915 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		AACAED6C2BF20F9500DAE915 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		AACAED6D2BF20F9500DAE915 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		AAE1C1662C0E64A400649296 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		AAE1C16A2C0E6B8C00649296 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		AAF116952C00EF6E002B1312 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		AAF116982C0119A1002B1312 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		AAF1169A2C011ADF002B1312 /* ViewControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCoordinator.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 		AA35932B2BF3619E0043B663 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AAE1C1692C0E6B7500649296 /* Types */,
+				AAE1C1652C0E649100649296 /* Managers */,
 				AA35932C2BF361D80043B663 /* UICollectionView+ReusableIdentifier.swift */,
 				AA35932E2BF3777F0043B663 /* ReusableIdentifier.swift */,
 			);
@@ -362,6 +368,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AAE1C1652C0E649100649296 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AAE1C1662C0E64A400649296 /* KeychainManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		AAE1C1692C0E6B7500649296 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				AAE1C16A2C0E6B8C00649296 /* CustomError.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		AAF116972C01198E002B1312 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +497,7 @@
 			packageReferences = (
 				AAC0BB452BED6D2D0000F0F0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AAE1C1682C0E64EB00649296 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = AA9556652BDBC46200E8FE28 /* Products */;
 			projectDirPath = "";
@@ -547,10 +570,12 @@
 				AA35932F2BF3777F0043B663 /* ReusableIdentifier.swift in Sources */,
 				AA35932D2BF361D80043B663 /* UICollectionView+ReusableIdentifier.swift in Sources */,
 				AA95566A2BDBC46200E8FE28 /* ContentView.swift in Sources */,
+				AAE1C16B2C0E6B8C00649296 /* CustomError.swift in Sources */,
 				AA2C98522BFA13BB00B28911 /* SwipingView.swift in Sources */,
 				AA2C98542BFA18CD00B28911 /* SwipingCard.swift in Sources */,
 				AAF116962C00EF6E002B1312 /* HeaderView.swift in Sources */,
 				AA2C984B2BFA0ADB00B28911 /* ResizeableBordered.swift in Sources */,
+				AAE1C1672C0E64A400649296 /* KeychainManager.swift in Sources */,
 				AAF116A72C01DB85002B1312 /* SwipingNavigationCoordinator.swift in Sources */,
 				AAAF835F2BF3D4A9006333F4 /* HorizontalCollectionCollectionViewCell.swift in Sources */,
 				AAF116A52C01DB65002B1312 /* OnboardingNavigationCoordinator.swift in Sources */,
@@ -1159,6 +1184,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.25.0;
+			};
+		};
+		AAE1C1682C0E64EB00649296 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

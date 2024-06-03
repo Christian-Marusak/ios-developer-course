@@ -1,5 +1,5 @@
 //
-//  DesignSystem.swift
+//  LoginFlowCoordinator.swift
 //  Course App
 //
 //  Created by Christián on 02/06/2024.

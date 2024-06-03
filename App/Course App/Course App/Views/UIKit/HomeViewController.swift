@@ -90,7 +90,6 @@ private extension HomeViewController {
     ) {
         guard dataSource.snapshot().numberOfSections == .zero else {
             let snapshot = dataSource.snapshot()
-            //            snapshot.moveItem((data.first?.jokes.first)!, afterItem: (data.first?.jokes.last)!)
             dataSource.apply(
                 snapshot,
                 animatingDifferences: animatingDifferences

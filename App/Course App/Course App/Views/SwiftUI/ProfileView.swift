@@ -7,18 +7,35 @@
 
 import SwiftUI
 import UIKit
+import Combine
+
+enum ProfileViewEvent {
+    case logout
+    case showOnboarding
+}
 
 struct ProfileView: View {
     
-    let coordinator: ProfileNavigationCoordinator = ProfileNavigationCoordinator()
+    private let eventSubject = PassthroughSubject<ProfileViewEvent, Never>()
     
     var body: some View {
         Text("Profile View")
         Button(action: {
-            coordinator.handleDeepling(deeplink: .onboarding(page: 0))
+            eventSubject.send(.showOnboarding)
         }, label: {
             Text("Start onboarding inside profile view")
         })
+        Button(action: {
+            eventSubject.send(.logout)
+        }, label: {
+            Text("Logout")
+        })
+    }
+}
+
+extension ProfileView: EventEmitting {
+    var eventPublisher: AnyPublisher<ProfileViewEvent, Never> {
+        eventSubject.eraseToAnyPublisher()
     }
 }
 

@@ -32,9 +32,7 @@ extension MainTabBarCoordinator {
     func handleDeepling(deeplink: Deeplink) {
         switch deeplink {
             case let .onboarding(page):
-            let coordinator = makeOnboardingFlow()
-            startChildCoordinator(coordinator)
-            tabBarController.present(coordinator.rootViewController, animated: true)
+             makeOnboardingFlow(page)
         default:
             break
         }
@@ -45,14 +43,20 @@ extension MainTabBarCoordinator {
 
 // MARK: Factory Method
 private extension MainTabBarCoordinator {
-    func makeOnboardingFlow() -> ViewControllerCoordinator {
+    func makeOnboardingCoordinator(_ page: Int) -> ViewControllerCoordinator {
         let coordinator = OnboardingNavigationCoordinator()
         
-        coordinator.eventPublisher.sink { [weak self] myEvent in
-            self?.handle(event: myEvent)
+        coordinator.eventPublisher.sink { [weak self] event in
+            self?.handle(event: event)
         }
         .store(in: &cancellables)
         return coordinator
+    }
+    
+    func makeOnboardingFlow(_ page: Int) {
+        let coordinator = makeOnboardingCoordinator(page)
+        startChildCoordinator(coordinator)
+        tabBarController.present(coordinator.rootViewController, animated: true)
     }
     
     func handle(event: OnboardingNavigationEvent) {
@@ -62,8 +66,6 @@ private extension MainTabBarCoordinator {
         }
     }
 
-
-    
     func makeTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.delegate = self
@@ -74,7 +76,7 @@ private extension MainTabBarCoordinator {
         let categoriesNavigationController = UINavigationController(rootViewController: HomeViewController())
         categoriesNavigationController.tabBarItem = UITabBarItem(title: "Categories", image: UIImage(systemName: "list.dash.header.rectangle"), tag: 0)
         
-    return categoriesNavigationController
+        return categoriesNavigationController
     }
     
     func setupSwipingCardView() -> UIViewController {
@@ -82,36 +84,42 @@ private extension MainTabBarCoordinator {
         let swipingCoordinator = SwipingNavigationCoordinator()
         startChildCoordinator(swipingCoordinator)
         
-        let vcon = UIHostingController(rootView: SwipingView())
-        vcon.title = "Scratch view"
+        let viewController = UIHostingController(rootView: SwipingView())
+        viewController.title = "Scratch view"
         
         swipingCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(systemName: "switch.2"), tag: 1)
         swipingCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .medium)], for: .normal)
         
-    let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .brown
-        appearance.shadowImage = UIImage()
-        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .medium)]
+//        let appearance = UINavigationBarAppearance()
+//        appearance.backgroundColor = .brown
+//        appearance.shadowImage = UIImage()
+//        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .medium)]
         
         
         return swipingCoordinator.rootViewController
     }
     
     func setupProfileView() -> UIViewController {
-        let profileView = ProfileNavigationCoordinator()
-        startChildCoordinator(profileView)
+        let profileCoordinator = ProfileNavigationCoordinator()
+        startChildCoordinator(profileCoordinator)
         
-        let vcon = UIHostingController(rootView: ProfileView())
-        vcon.title = "Profile View"
-        profileView.rootViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
-        profileView.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold(with: .size20), .foregroundColor: UIColor.blue], for: .normal)
+        let viewController = UIHostingController(rootView: ProfileView())
+        viewController.title = "Profile View"
+        profileCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
+        profileCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold(with: .size20), .foregroundColor: UIColor.blue], for: .normal)
         
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .brown
-        appearance.shadowImage = UIImage()
-        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.futura(with: .size28)]
-    
-        return profileView.rootViewController
+        profileCoordinator.eventPublisher.sink { [weak self] event in
+            guard let self else {
+                return
+            }
+            switch event {
+            case .logout:
+                self.eventSubject.send(.logout(self))
+            case .showOnboarding:
+                self.makeOnboardingFlow(0)
+            }
+        }.store(in: &cancellables)
+        return profileCoordinator.rootViewController
     }
     
 }

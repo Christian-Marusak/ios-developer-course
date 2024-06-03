@@ -22,11 +22,9 @@ final class HorizontalCollectionCollectionViewCell: UICollectionViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.register(ImageCollectionViewCell.self)
         collectionView.register(UICollectionViewCell.self)
         return collectionView
     }()
-//    var images = [UIImage?]()
     var data: [Joke] = []
 
     // MARK: Lifecycle
@@ -61,7 +59,6 @@ extension HorizontalCollectionCollectionViewCell {
 // MARK: - UICollectionViewDelegate
 extension HorizontalCollectionCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        logger.info("Horizontal scrolling did select item \(indexPath)")
         didTapCallback?(data[indexPath.row])
     }
 }
@@ -94,9 +91,6 @@ extension HorizontalCollectionCollectionViewCell: UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//                let cell = collectionView.dequeueReusableCell(for: indexPath) as ImageCollectionViewCell
-//        cell.imageView.image = data[indexPath.row].image
-//                return cell
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.contentConfiguration = UIHostingConfiguration {
             

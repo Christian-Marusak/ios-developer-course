@@ -19,18 +19,18 @@ enum OnboardingNavigationEvent {
 
 final class OnboardingNavigationCoordinator: OnboardingCoordinating {
     
-    weak var parentCoordinator: (any Coordinator)?
+    
     
    
     static private(set) var numberOfPages: Int = 3
     
     func pushNewPage(from page: Int) {
-        let _ = page < Self.numberOfPages - 1 ? page + 1 : 0
         if page < Self.numberOfPages - 1 {
             navigationController.pushViewController(makeOnboardingView(page: page + 1), animated: true)
         } else {
-            navigationController.setViewControllers([makeOnboardingView(page: 0)], animated: true)
+            navigationController.popToRootViewController(animated: true)
         }
+        
     }
     
     func handleDeepling(deeplink: Deeplink) {
@@ -56,7 +56,6 @@ private extension OnboardingNavigationCoordinator {
     
     func makeNavigationController() -> UINavigationController {
         let navigationController = CustomNavigationController()
-//        navigationController.modalPresentationStyle = .fullScreen
         navigationController.modalTransitionStyle = .crossDissolve
         navigationController.eventPublisher.sink { [weak self] event in
             guard let self else {
