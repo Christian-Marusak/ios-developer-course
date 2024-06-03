@@ -25,7 +25,6 @@ final class OnboardingNavigationCoordinator: OnboardingCoordinating {
     static private(set) var numberOfPages: Int = 3
     
     func pushNewPage(from page: Int) {
-        let _ = page < Self.numberOfPages - 1 ? page + 1 : 0
         if page < Self.numberOfPages - 1 {
             navigationController.pushViewController(makeOnboardingView(page: page + 1), animated: true)
         } else {
