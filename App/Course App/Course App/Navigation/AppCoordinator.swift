@@ -11,8 +11,13 @@ import Combine
 
 protocol AppCoordinating: ViewControllerCoordinator {}
 
+enum Constants {
+    static let showOnboardingKey = "showOnboardingPage"
+    static let isAuthorizedFlowKey = "isAuthorizedFlow"
+}
+
 final class AppCoordinator: AppCoordinating, ObservableObject {
-    @Published var isAuthorizedFlow: Bool = false
+    @Published var isAuthorizedFlow: Bool = UserDefaults.standard.bool(forKey: Constants.isAuthorizedFlowKey)
     
     init() {
         if isAuthorizedFlow {
@@ -46,7 +51,12 @@ extension AppCoordinator {
     
     
     func handleDeepling(deeplink: Deeplink) {
-        childCoordinators.forEach{ $0.handleDeepling(deeplink: deeplink )}
+        if case .onboarding(let page) = deeplink, !isAuthorizedFlow{
+            UserDefaults.standard.set(page, forKey: Constants.showOnboardingKey)
+            debugPrint(UserDefaults.standard.integer(forKey: Constants.showOnboardingKey))
+        } else {
+            childCoordinators.forEach{ $0.handleDeepling(deeplink: deeplink )}
+        }
     }
 }
 
@@ -91,6 +101,12 @@ private extension AppCoordinator {
             rootViewController = makeTabBarFlow()
             release(coordinator: coordinator)
             isAuthorizedFlow = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                if let page = UserDefaults.standard.value(forKey: Constants.showOnboardingKey) as? Int {
+                    self.handleDeepling(deeplink: .onboarding(page: page))
+                    UserDefaults.standard.removeObject(forKey: Constants.showOnboardingKey)
+                }
+            }
         }
     }
 }

@@ -13,15 +13,18 @@ var logger: Logger = Logger()
 enum CustomError: Error {
     case networkError(message: String)
     case unknownError
+    case noDataError
 
         var localizedDescription: String {
             switch self {
             case .networkError(let message):
                 logger.error("Network Error: \(message)")
-                return ("Network Error: \(message)")
+                return "Network Error: \(message)"
             case .unknownError:
                 logger.error("Unknown Error:")
-                return ("Unknown Error:")
+                return "Unknown Error"
+            case .noDataError:
+                return "No Data Found"
             }
         }
 }

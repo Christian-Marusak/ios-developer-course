@@ -16,7 +16,11 @@ enum Deeplink {
     case signIn
 }
 
+
+
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
+    weak var deeplinkHandler: AppCoordinator?
    
     func application(
         _ application: UIApplication,
@@ -28,11 +32,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
     
     func deeplinkFromService() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-//            self?.appCoordinator.handleDeepling(deeplink: .onboarding(page: 2))
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.deeplinkHandler?.handleDeepling(deeplink: .onboarding(page: 2))
+        }
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
-//            self?.appCoordinator.handleDeepling(deeplink: .closeOnboarding)
+//            self?.deeplinkHandler?.handleDeepling(deeplink: .closeOnboarding)
 //        }
     }
     
@@ -49,6 +53,7 @@ struct Course_AppApp: App {
     
     init() {
         appCoordinator.start()
+        delegate.deeplinkHandler = appCoordinator
     }
     
     var body: some Scene {

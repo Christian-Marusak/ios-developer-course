@@ -60,6 +60,7 @@ struct LoginView: View {
 //                        print("Login")
 //                    }
                     eventSubject.send(.login)
+                    UserDefaults.standard.set(true, forKey: Constants.isAuthorizedFlowKey)
                 } label: {
                     Text(register ? "register" : "login")
                         .animation(.easeIn, value: register)

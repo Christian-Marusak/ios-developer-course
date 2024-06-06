@@ -27,6 +27,7 @@ struct ProfileView: View {
         })
         Button(action: {
             eventSubject.send(.logout)
+            UserDefaults.standard.set(false, forKey: Constants.isAuthorizedFlowKey)
         }, label: {
             Text("Logout")
         })

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3702F4C92C0CE0BE00547E78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3702F4C82C0CE0BE00547E78 /* GoogleService-Info.plist */; };
 		3702F4CD2C0CE7A600547E78 /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702F4CC2C0CE7A600547E78 /* LoginFlowCoordinator.swift */; };
+		378B42342C0F894D0041C72B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 378B42332C0F894D0041C72B /* KeychainAccess */; };
 		AA1858442C0C7F3E006F84E4 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858432C0C7F3E006F84E4 /* InputView.swift */; };
 		AA1858462C0C7FB7006F84E4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858452C0C7FB7006F84E4 /* LoginView.swift */; };
 		AA2007002BF29A5F001FFD10 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */; };
@@ -158,6 +159,7 @@
 				AAC5124D2BEE145E00986DF9 /* FirebaseAuth in Frameworks */,
 				AAC5124F2BEE145E00986DF9 /* FirebaseFirestore in Frameworks */,
 				AAC512532BEE145E00986DF9 /* FirebaseFirestoreSwift in Frameworks */,
+				378B42342C0F894D0041C72B /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +181,13 @@
 				AA1858452C0C7FB7006F84E4 /* LoginView.swift */,
 			);
 			path = LoginFlow;
+			sourceTree = "<group>";
+		};
+		378B42322C0F894D0041C72B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		AA04B29D2BEFEAFE00532B72 /* Resources */ = {
@@ -328,6 +337,7 @@
 				AA42FA112BED1CE20001BCE9 /* Course AppUITests */,
 				AA42FA202BED1D110001BCE9 /* Course Tests */,
 				AA9556652BDBC46200E8FE28 /* Products */,
+				378B42322C0F894D0041C72B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -457,6 +467,7 @@
 				AAC5124E2BEE145E00986DF9 /* FirebaseFirestore */,
 				AAC512502BEE145E00986DF9 /* FirebaseFirestoreCombine-Community */,
 				AAC512522BEE145E00986DF9 /* FirebaseFirestoreSwift */,
+				378B42332C0F894D0041C72B /* KeychainAccess */,
 			);
 			productName = "Course App";
 			productReference = AA9556642BDBC46200E8FE28 /* App Course Dev.app */;
@@ -1197,6 +1208,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		378B42332C0F894D0041C72B /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAE1C1682C0E64EB00649296 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		AAC5124C2BEE145E00986DF9 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AAC5124B2BEE145E00986DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
