@@ -12,13 +12,20 @@ import FirebaseAuth
 
 struct LoginView: View {
     
+    private let eventSubject = PassthroughSubject<LoginEvent, Never>()
+    @State private var register: Bool = true
+    @State private var password: String
+    @State var email: String
+    private let authManager = FirebaseAuthManager()
+    
+    init(password: String  = "", email: String = "") {
+        self.password = password
+        self.email = email
+    }
+    
     enum LoginEvent {
         case login
     }
-    
-    private let eventSubject = PassthroughSubject<LoginEvent, Never>()
-    @State var register: Bool = true
-//    var viewModel =
     
     
     var body: some View {
@@ -36,12 +43,12 @@ struct LoginView: View {
             .animation(.easeIn, value: register)
             
             InputView(
-                text: "",
+                text: email,
                 title: "Email",
                 placeholder: "Enter email"
             )
             InputView(
-                text: "",
+                text: password,
                 title: "Password",
                 placeholder: "Enter password",
                 isSecureField: true
@@ -49,17 +56,7 @@ struct LoginView: View {
             
             VStack {
                 Button {
-//                    if register {
-//                        Task {
-////                            await callCreateUser()
-//                        }
-//                    } else {
-//                        Task {
-////                            await callLoginUser()
-//                        }
-//                        print("Login")
-//                    }
-                    eventSubject.send(.login)
+                    signIn()
                     UserDefaults.standard.set(true, forKey: Constants.isAuthorizedFlowKey)
                 } label: {
                     Text(register ? "register" : "login")
@@ -85,6 +82,21 @@ struct LoginView: View {
         .padding()
         Spacer()
         
+    }
+}
+extension LoginView {
+    
+    @MainActor
+    func signIn() {
+        Task {
+            do {
+                try await authManager.signIn(Credentials(email: email, password: password))
+                eventSubject.send(.login)
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

@@ -6,6 +6,8 @@
 //
 
 import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 import UIKit
 import SwiftUI
 import os
@@ -21,11 +23,11 @@ enum Deeplink {
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     weak var deeplinkHandler: AppCoordinator?
-   
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        print("Starting")
     FirebaseApp.configure()
         deeplinkFromService()
     return true
@@ -48,7 +50,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct Course_AppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @ObservedObject var appCoordinator = AppCoordinator()
-    
     private let logger = Logger()
     
     init() {

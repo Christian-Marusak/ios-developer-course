@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3702F4C92C0CE0BE00547E78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3702F4C82C0CE0BE00547E78 /* GoogleService-Info.plist */; };
 		3702F4CD2C0CE7A600547E78 /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702F4CC2C0CE7A600547E78 /* LoginFlowCoordinator.swift */; };
 		378B42342C0F894D0041C72B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 378B42332C0F894D0041C72B /* KeychainAccess */; };
 		AA1858442C0C7F3E006F84E4 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858432C0C7F3E006F84E4 /* InputView.swift */; };
 		AA1858462C0C7FB7006F84E4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1858452C0C7FB7006F84E4 /* LoginView.swift */; };
-		AA2007002BF29A5F001FFD10 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */; };
 		AA2C98492BFA079800B28911 /* BorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C98482BFA079800B28911 /* BorderedModifier.swift */; };
 		AA2C984B2BFA0ADB00B28911 /* ResizeableBordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C984A2BFA0ADB00B28911 /* ResizeableBordered.swift */; };
 		AA2C984E2BFA0D2800B28911 /* SelectableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C984D2BFA0D2800B28911 /* SelectableButtonStyle.swift */; };
@@ -31,6 +29,16 @@
 		AA46A6BC2C1629570029EAC6 /* ImagesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6BB2C1629570029EAC6 /* ImagesRouter.swift */; };
 		AA46A6BE2C16F8340029EAC6 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6BD2C16F8340029EAC6 /* ApiManager.swift */; };
 		AA46A6C02C17104E0029EAC6 /* JokeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6BF2C17104E0029EAC6 /* JokeResponse.swift */; };
+		AA46A6C32C1867950029EAC6 /* JokesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6C22C1867950029EAC6 /* JokesRouter.swift */; };
+		AA46A6C52C188E170029EAC6 /* JokeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6C42C188E170029EAC6 /* JokeService.swift */; };
+		AA46A6C82C18C7250029EAC6 /* FirebaseStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6C72C18C7250029EAC6 /* FirebaseStoreManager.swift */; };
+		AA46A6CA2C18CE000029EAC6 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6C92C18CE000029EAC6 /* Joke.swift */; };
+		AA46A6CC2C18CF4B0029EAC6 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6CB2C18CF4B0029EAC6 /* Action.swift */; };
+		AA46A6CE2C18CFC60029EAC6 /* OnFirstAppear.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6CD2C18CFC60029EAC6 /* OnFirstAppear.swift */; };
+		AA46A6D02C18D0010029EAC6 /* EmbededInScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6CF2C18D0010029EAC6 /* EmbededInScrollView.swift */; };
+		AA46A6D22C18E44E0029EAC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA46A6D12C18E44E0029EAC6 /* GoogleService-Info.plist */; };
+		AA46A6D52C18E7140029EAC6 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6D42C18E7140029EAC6 /* FirebaseAuthManager.swift */; };
+		AA46A6D72C18E8040029EAC6 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6D62C18E8040029EAC6 /* Credentials.swift */; };
 		AA4F36FA2BF250C0006A6D2F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4F36F92BF250C0006A6D2F /* Colors.xcassets */; };
 		AA4F36FD2BF25261006A6D2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F36FB2BF25261006A6D2F /* HomeViewController.swift */; };
 		AA4F36FE2BF25261006A6D2F /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4F36FC2BF25261006A6D2F /* HomeViewController.xib */; };
@@ -84,11 +92,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3702F4C82C0CE0BE00547E78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3702F4CC2C0CE7A600547E78 /* LoginFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowCoordinator.swift; sourceTree = "<group>"; };
 		AA1858432C0C7F3E006F84E4 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		AA1858452C0C7FB7006F84E4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
 		AA2C98482BFA079800B28911 /* BorderedModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedModifier.swift; sourceTree = "<group>"; };
 		AA2C984A2BFA0ADB00B28911 /* ResizeableBordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeableBordered.swift; sourceTree = "<group>"; };
 		AA2C984D2BFA0D2800B28911 /* SelectableButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButtonStyle.swift; sourceTree = "<group>"; };
@@ -111,6 +117,16 @@
 		AA46A6BB2C1629570029EAC6 /* ImagesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesRouter.swift; sourceTree = "<group>"; };
 		AA46A6BD2C16F8340029EAC6 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		AA46A6BF2C17104E0029EAC6 /* JokeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeResponse.swift; sourceTree = "<group>"; };
+		AA46A6C22C1867950029EAC6 /* JokesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesRouter.swift; sourceTree = "<group>"; };
+		AA46A6C42C188E170029EAC6 /* JokeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeService.swift; sourceTree = "<group>"; };
+		AA46A6C72C18C7250029EAC6 /* FirebaseStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStoreManager.swift; sourceTree = "<group>"; };
+		AA46A6C92C18CE000029EAC6 /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
+		AA46A6CB2C18CF4B0029EAC6 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		AA46A6CD2C18CFC60029EAC6 /* OnFirstAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppear.swift; sourceTree = "<group>"; };
+		AA46A6CF2C18D0010029EAC6 /* EmbededInScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbededInScrollView.swift; sourceTree = "<group>"; };
+		AA46A6D12C18E44E0029EAC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AA46A6D42C18E7140029EAC6 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		AA46A6D62C18E8040029EAC6 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		AA4F36F92BF250C0006A6D2F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		AA4F36FB2BF25261006A6D2F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AA4F36FC2BF25261006A6D2F /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -223,7 +239,7 @@
 		AA2006FE2BF29A4A001FFD10 /* DataAPI */ = {
 			isa = PBXGroup;
 			children = (
-				AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */,
+				AA46A6C92C18CE000029EAC6 /* Joke.swift */,
 			);
 			path = DataAPI;
 			sourceTree = "<group>";
@@ -243,6 +259,8 @@
 			children = (
 				AA2C98482BFA079800B28911 /* BorderedModifier.swift */,
 				AA2C984A2BFA0ADB00B28911 /* ResizeableBordered.swift */,
+				AA46A6CD2C18CFC60029EAC6 /* OnFirstAppear.swift */,
+				AA46A6CF2C18D0010029EAC6 /* EmbededInScrollView.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -279,6 +297,7 @@
 		AA42FA0B2BED1C280001BCE9 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				AA46A6D12C18E44E0029EAC6 /* GoogleService-Info.plist */,
 				AA42FA282BED1D5C0001BCE9 /* Development.xcconfig */,
 				AA42FA292BED1E5F0001BCE9 /* Production.xcconfig */,
 			);
@@ -305,10 +324,13 @@
 		AA46A6B82C122F3A0029EAC6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				AA46A6D32C18E7050029EAC6 /* Authentification */,
+				AA46A6C62C18C7160029EAC6 /* Storage */,
 				AA46A6B92C122F660029EAC6 /* Endpoint.swift */,
 				AA46A6BD2C16F8340029EAC6 /* ApiManager.swift */,
 				AA46A6BF2C17104E0029EAC6 /* JokeResponse.swift */,
 				AA46A6C12C1863B30029EAC6 /* Endpoints */,
+				AA46A6C42C188E170029EAC6 /* JokeService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -317,8 +339,26 @@
 			isa = PBXGroup;
 			children = (
 				AA46A6BB2C1629570029EAC6 /* ImagesRouter.swift */,
+				AA46A6C22C1867950029EAC6 /* JokesRouter.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		AA46A6C62C18C7160029EAC6 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				AA46A6C72C18C7250029EAC6 /* FirebaseStoreManager.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		AA46A6D32C18E7050029EAC6 /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+				AA46A6D42C18E7140029EAC6 /* FirebaseAuthManager.swift */,
+				AA46A6D62C18E8040029EAC6 /* Credentials.swift */,
+			);
+			path = Authentification;
 			sourceTree = "<group>";
 		};
 		AA4F36F62BF25026006A6D2F /* Views */ = {
@@ -390,7 +430,6 @@
 				AA04B29D2BEFEAFE00532B72 /* Resources */,
 				AAC0BB442BED6C720000F0F0 /* Course-App-Info.plist */,
 				AA9556672BDBC46200E8FE28 /* Course_AppApp.swift */,
-				3702F4C82C0CE0BE00547E78 /* GoogleService-Info.plist */,
 				AA42FA0B2BED1C280001BCE9 /* Configuration */,
 				AA4F36F62BF25026006A6D2F /* Views */,
 				AA95566D2BDBC46200E8FE28 /* Preview Content */,
@@ -418,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE1C16A2C0E6B8C00649296 /* CustomError.swift */,
+				AA46A6CB2C18CF4B0029EAC6 /* Action.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -570,11 +610,11 @@
 			files = (
 				AA95566F2BDBC46200E8FE28 /* Preview Assets.xcassets in Resources */,
 				AACAED702BF20F9500DAE915 /* Poppins-MediumItalic.ttf in Resources */,
+				AA46A6D22C18E44E0029EAC6 /* GoogleService-Info.plist in Resources */,
 				AA3BCAFD2BFDCB7100334E82 /* Futura-Bold-Italic-font.ttf in Resources */,
 				AA95566C2BDBC46200E8FE28 /* Images.xcassets in Resources */,
 				AACAED6E2BF20F9500DAE915 /* Poppins-Bold.ttf in Resources */,
 				AACAED6F2BF20F9500DAE915 /* Poppins-Regular.ttf in Resources */,
-				3702F4C92C0CE0BE00547E78 /* GoogleService-Info.plist in Resources */,
 				AA4F36FA2BF250C0006A6D2F /* Colors.xcassets in Resources */,
 				AA4F36FE2BF25261006A6D2F /* HomeViewController.xib in Resources */,
 			);
@@ -605,10 +645,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3702F4CD2C0CE7A600547E78 /* LoginFlowCoordinator.swift in Sources */,
+				AA46A6D02C18D0010029EAC6 /* EmbededInScrollView.swift in Sources */,
+				AA46A6CC2C18CF4B0029EAC6 /* Action.swift in Sources */,
 				AA6275B12BEFE1B800646C3E /* Configuration.swift in Sources */,
 				AA35932F2BF3777F0043B663 /* ReusableIdentifier.swift in Sources */,
 				AA35932D2BF361D80043B663 /* UICollectionView+ReusableIdentifier.swift in Sources */,
 				AA95566A2BDBC46200E8FE28 /* ContentView.swift in Sources */,
+				AA46A6CA2C18CE000029EAC6 /* Joke.swift in Sources */,
 				AAE1C16B2C0E6B8C00649296 /* CustomError.swift in Sources */,
 				AA2C98522BFA13BB00B28911 /* SwipingView.swift in Sources */,
 				AA2C98542BFA18CD00B28911 /* SwipingCard.swift in Sources */,
@@ -618,10 +661,10 @@
 				AAF116A72C01DB85002B1312 /* SwipingNavigationCoordinator.swift in Sources */,
 				AAAF835F2BF3D4A9006333F4 /* HorizontalCollectionCollectionViewCell.swift in Sources */,
 				AAF116A52C01DB65002B1312 /* OnboardingNavigationCoordinator.swift in Sources */,
-				AA2007002BF29A5F001FFD10 /* MockDataProvider.swift in Sources */,
 				AA9180592C03BAD600B3D5A0 /* ProfileNavigationCoordinator.swift in Sources */,
 				AAF1169F2C01240B002B1312 /* CoordinatorView.swift in Sources */,
 				AAF1169B2C011ADF002B1312 /* ViewControllerCoordinator.swift in Sources */,
+				AA46A6C52C188E170029EAC6 /* JokeService.swift in Sources */,
 				AAF116A12C012A18002B1312 /* AppCoordinator.swift in Sources */,
 				AA46A6BA2C122F660029EAC6 /* Endpoint.swift in Sources */,
 				AA2C98492BFA079800B28911 /* BorderedModifier.swift in Sources */,
@@ -637,11 +680,16 @@
 				AA3BCAFB2BFD1C0300334E82 /* DesignSystem.swift in Sources */,
 				AA2C984E2BFA0D2800B28911 /* SelectableButtonStyle.swift in Sources */,
 				AAF1169D2C011C39002B1312 /* MainTabBarCoordinator.swift in Sources */,
+				AA46A6C32C1867950029EAC6 /* JokesRouter.swift in Sources */,
 				AA9556682BDBC46200E8FE28 /* Course_AppApp.swift in Sources */,
 				AA46A6BE2C16F8340029EAC6 /* ApiManager.swift in Sources */,
 				AA4F36FD2BF25261006A6D2F /* HomeViewController.swift in Sources */,
 				AA1858462C0C7FB7006F84E4 /* LoginView.swift in Sources */,
+				AA46A6C82C18C7250029EAC6 /* FirebaseStoreManager.swift in Sources */,
+				AA46A6D72C18E8040029EAC6 /* Credentials.swift in Sources */,
+				AA46A6D52C18E7140029EAC6 /* FirebaseAuthManager.swift in Sources */,
 				AA46A6C02C17104E0029EAC6 /* JokeResponse.swift in Sources */,
+				AA46A6CE2C18CFC60029EAC6 /* OnFirstAppear.swift in Sources */,
 				AA2C98562BFBED8900B28911 /* ScratchView.swift in Sources */,
 				AA82E1502BFCD6C900B0A1C3 /* MainTabBarController.swift in Sources */,
 			);

@@ -11,21 +11,32 @@ import SwiftUI
 import UIKit
 
 final class HomeViewController: UIViewController {
+    
+    struct SectionData: Identifiable, Hashable {
+        let id = UUID()
+        let title: String
+        var jokes: [Joke]
+
+        init(title: String, jokes: [JokeResponse], likes: [String: Bool]) {
+            self.title = title
+            self.jokes = jokes.map { Joke(jokeResponse: $0, liked: likes[$0.id] ?? false) }
+        }
+    }
+    
     let logger = Logger()
-    // swiftlint:disable:next prohibited_interface_builder
     @IBOutlet private var categoriesCollectionView: UICollectionView!
     
-    // MARK: Data Source
-    private lazy var dataProvider = MockDataProvider()
+    // MARK: Private Variables
     
-    typealias DataSource = UICollectionViewDiffableDataSource<
-        SectionData,
-        [Joke]
-    >
-    typealias Snapshot = NSDiffableDataSourceSnapshot<
-        SectionData,
-        [Joke]
-    >
+    private let jokeService: JokesServicing = JokeService(apiManager: APIManager())
+    @Published private var data: [SectionData] = []
+    private let store: StoreManaging = FirebaseStoreManager()
+    private lazy var dataSource = makeDataSource()
+    private lazy var cancellables = Set<AnyCancellable>()
+    
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<SectionData,[Joke]>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionData,[Joke]>
     enum MagicNumbers: CGFloat {
         case number10 = 10
         case number5 = 5
@@ -34,8 +45,7 @@ final class HomeViewController: UIViewController {
         case number4 = 4
         case number30 = 30
     }
-    private lazy var dataSource = makeDataSource()
-    private lazy var cancellables = Set<AnyCancellable>()
+    
     
     
     override func viewDidLoad() {
@@ -43,6 +53,8 @@ final class HomeViewController: UIViewController {
         setup()
         title = "Categories"
         readData()
+        fetchData()
+        
     }
 }
 
@@ -70,18 +82,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDiffableDataSource
 private extension HomeViewController {
     func readData() {
-        dataProvider.$data.sink {[weak self] data in
-            debugPrint(
-                data
-            )
-            self?.applySnapshotData(
-                data: data,
-                animatingDifferences: true
-            )
+        $data.sink { [weak self] data in
+            self?.applySnapshotData(data: data, animatingDifferences: true)
         }
-        .store(
-            in: &cancellables
-        )
+        .store(in: &cancellables)
     }
     
     func applySnapshotData(
@@ -212,5 +216,50 @@ private extension HomeViewController {
             layout,
             animated: false
         )
+    }
+}
+
+//MARK: Data Fetching
+extension HomeViewController {
+    @MainActor
+    func storeLike(joke: Joke) {
+        Task {
+            try await store.storeLike(jokeId: joke.id, liked: !joke.liked)
+        }
+    }
+    @MainActor
+    func fetchData() {
+        Task {
+            let categories = try await jokeService.fetchCategories()
+
+            try await withThrowingTaskGroup(of: JokeResponse.self) { [weak self] group in
+                guard let self else {
+                    return
+                }
+
+                categories.forEach { category in
+                    for _ in 1...5 {
+                        group.addTask {
+                            try await self.jokeService.fetchJokeForCategory(category)
+                        }
+                    }
+                }
+
+                var jokesResponses: [JokeResponse] = []
+                var likes: [String: Bool] = [:]
+                for try await jokeResponse in group {
+                    jokesResponses.append(jokeResponse)
+                    let liked = try? await store.fetchLiked(jokeId: jokeResponse.id)
+                    likes[jokeResponse.id] = liked ?? false
+                }
+
+                let dataDictionary = Dictionary(grouping: jokesResponses) { $0.categories.first ?? "" }
+                var sectionData = [SectionData]()
+                for key in dataDictionary.keys {
+                    sectionData.append(SectionData(title: key, jokes: dataDictionary[key] ?? [], likes: likes))
+                }
+                data = sectionData
+            }
+        }
     }
 }
