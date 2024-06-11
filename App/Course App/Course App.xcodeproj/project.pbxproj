@@ -27,6 +27,10 @@
 		AA42FA132BED1CE20001BCE9 /* Course_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42FA122BED1CE20001BCE9 /* Course_AppUITests.swift */; };
 		AA42FA152BED1CE20001BCE9 /* Course_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42FA142BED1CE20001BCE9 /* Course_AppUITestsLaunchTests.swift */; };
 		AA42FA222BED1D110001BCE9 /* Course_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42FA212BED1D110001BCE9 /* Course_Tests.swift */; };
+		AA46A6BA2C122F660029EAC6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6B92C122F660029EAC6 /* Endpoint.swift */; };
+		AA46A6BC2C1629570029EAC6 /* ImagesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6BB2C1629570029EAC6 /* ImagesRouter.swift */; };
+		AA46A6BE2C16F8340029EAC6 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6BD2C16F8340029EAC6 /* ApiManager.swift */; };
+		AA46A6C02C17104E0029EAC6 /* JokeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA46A6BF2C17104E0029EAC6 /* JokeResponse.swift */; };
 		AA4F36FA2BF250C0006A6D2F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4F36F92BF250C0006A6D2F /* Colors.xcassets */; };
 		AA4F36FD2BF25261006A6D2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4F36FB2BF25261006A6D2F /* HomeViewController.swift */; };
 		AA4F36FE2BF25261006A6D2F /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4F36FC2BF25261006A6D2F /* HomeViewController.xib */; };
@@ -103,6 +107,10 @@
 		AA42FA212BED1D110001BCE9 /* Course_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course_Tests.swift; sourceTree = "<group>"; };
 		AA42FA282BED1D5C0001BCE9 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		AA42FA292BED1E5F0001BCE9 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		AA46A6B92C122F660029EAC6 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		AA46A6BB2C1629570029EAC6 /* ImagesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesRouter.swift; sourceTree = "<group>"; };
+		AA46A6BD2C16F8340029EAC6 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		AA46A6BF2C17104E0029EAC6 /* JokeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeResponse.swift; sourceTree = "<group>"; };
 		AA4F36F92BF250C0006A6D2F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		AA4F36FB2BF25261006A6D2F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AA4F36FC2BF25261006A6D2F /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -294,6 +302,25 @@
 			path = "Course Tests";
 			sourceTree = "<group>";
 		};
+		AA46A6B82C122F3A0029EAC6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AA46A6B92C122F660029EAC6 /* Endpoint.swift */,
+				AA46A6BD2C16F8340029EAC6 /* ApiManager.swift */,
+				AA46A6BF2C17104E0029EAC6 /* JokeResponse.swift */,
+				AA46A6C12C1863B30029EAC6 /* Endpoints */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		AA46A6C12C1863B30029EAC6 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				AA46A6BB2C1629570029EAC6 /* ImagesRouter.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		AA4F36F62BF25026006A6D2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +381,7 @@
 		AA9556662BDBC46200E8FE28 /* Course App */ = {
 			isa = PBXGroup;
 			children = (
+				AA46A6B82C122F3A0029EAC6 /* Networking */,
 				3702F4CA2C0CE6F400547E78 /* Screens */,
 				AAF116972C01198E002B1312 /* Navigation */,
 				AA2C98462BFA077300B28911 /* SharedUI */,
@@ -595,10 +623,12 @@
 				AAF1169F2C01240B002B1312 /* CoordinatorView.swift in Sources */,
 				AAF1169B2C011ADF002B1312 /* ViewControllerCoordinator.swift in Sources */,
 				AAF116A12C012A18002B1312 /* AppCoordinator.swift in Sources */,
+				AA46A6BA2C122F660029EAC6 /* Endpoint.swift in Sources */,
 				AA2C98492BFA079800B28911 /* BorderedModifier.swift in Sources */,
 				AAF116A32C01DAFA002B1312 /* OnboardingView.swift in Sources */,
 				AA91805B2C03BB1A00B3D5A0 /* ProfileView.swift in Sources */,
 				AA35932A2BF35CCB0043B663 /* LabelCollectionViewCell.swift in Sources */,
+				AA46A6BC2C1629570029EAC6 /* ImagesRouter.swift in Sources */,
 				AAF116992C0119A1002B1312 /* Coordinator.swift in Sources */,
 				AA1858442C0C7F3E006F84E4 /* InputView.swift in Sources */,
 				AA9180572C03539D00B3D5A0 /* EventEmittier.swift in Sources */,
@@ -608,8 +638,10 @@
 				AA2C984E2BFA0D2800B28911 /* SelectableButtonStyle.swift in Sources */,
 				AAF1169D2C011C39002B1312 /* MainTabBarCoordinator.swift in Sources */,
 				AA9556682BDBC46200E8FE28 /* Course_AppApp.swift in Sources */,
+				AA46A6BE2C16F8340029EAC6 /* ApiManager.swift in Sources */,
 				AA4F36FD2BF25261006A6D2F /* HomeViewController.swift in Sources */,
 				AA1858462C0C7FB7006F84E4 /* LoginView.swift in Sources */,
+				AA46A6C02C17104E0029EAC6 /* JokeResponse.swift in Sources */,
 				AA2C98562BFBED8900B28911 /* ScratchView.swift in Sources */,
 				AA82E1502BFCD6C900B0A1C3 /* MainTabBarController.swift in Sources */,
 			);

@@ -94,9 +94,20 @@ extension HorizontalCollectionCollectionViewCell: UICollectionViewDataSource, UI
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.contentConfiguration = UIHostingConfiguration {
             
-            Image(uiImage: data[indexPath.row].image ?? UIImage())
-                .resizableBordered(cornerRadius: 10)
-                .scaledToFit()
+//            Image(uiImage: data[indexPath.row].image ?? UIImage())
+//                .resizableBordered(cornerRadius: 10)
+//                .scaledToFit()
+            if let url = try?
+                           ImagesRouter.size300x200.asURLRequest().url {
+                           AsyncImage(url: url) { image in
+                               image.resizableBordered(cornerRadius: 3)
+                                   .scaledToFit()
+                           } placeholder: {
+                               Color.gray
+                           }
+                       } else {
+                           Text("ERROR MESSAGE")
+                       }
         
         }
         return cell

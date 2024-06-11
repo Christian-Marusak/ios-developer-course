@@ -54,7 +54,7 @@ struct SwipingCard: View {
             VStack{
                 Spacer()
                     //scratchView
-                ScratchView(image: configuration.image, text: configuration.description)
+                ScratchView(text: configuration.description)
                 Spacer()
                 cardDescription
             }
