@@ -6,8 +6,6 @@
 //
 
 import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
 import UIKit
 import SwiftUI
 import os
@@ -28,7 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         print("Starting")
-    FirebaseApp.configure()
+//    FirebaseApp.configure()
         deeplinkFromService()
     return true
 }

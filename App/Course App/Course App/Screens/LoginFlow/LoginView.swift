@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Combine
-import FirebaseAuth
+//import FirebaseAuth
 // MARK: - User Interface of LoginView
 
 struct LoginView: View {
@@ -56,6 +56,7 @@ struct LoginView: View {
             
             VStack {
                 Button {
+                    print(email, password)
                     signIn()
                     UserDefaults.standard.set(true, forKey: Constants.isAuthorizedFlowKey)
                 } label: {
@@ -77,6 +78,9 @@ struct LoginView: View {
                     }
                 }
             }
+            .onAppear(perform: {
+                print("I am at login view")
+            })
             .padding(50)
         }
         .padding()

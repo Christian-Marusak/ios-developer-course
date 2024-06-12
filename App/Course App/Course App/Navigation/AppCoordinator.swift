@@ -4,7 +4,7 @@
 //
 //  Created by Christián on 24/05/2024.
 //
-
+import FirebaseCore
 import Foundation
 import UIKit
 import Combine
@@ -20,6 +20,7 @@ final class AppCoordinator: AppCoordinating, ObservableObject {
     @Published var isAuthorizedFlow: Bool = UserDefaults.standard.bool(forKey: Constants.isAuthorizedFlowKey)
     
     init() {
+        FirebaseApp.configure()
         if isAuthorizedFlow {
             rootViewController = makeTabBarFlow()
         } else {
