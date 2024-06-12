@@ -16,11 +16,13 @@ struct LoginView: View {
     @State private var register: Bool = true
     @State private var password: String
     @State var email: String
+    @State var name: String
     private let authManager = FirebaseAuthManager()
     
-    init(password: String  = "", email: String = "") {
+    init(password: String  = "", email: String = "", name: String = "") {
         self.password = password
         self.email = email
+        self.name = name
     }
     
     enum LoginEvent {
@@ -35,7 +37,7 @@ struct LoginView: View {
         Spacer()
         VStack {
             InputView(
-                text: "",
+                text: $name,
                 title: "Name",
                 placeholder: "Enter you name"
             )
@@ -43,12 +45,12 @@ struct LoginView: View {
             .animation(.easeIn, value: register)
             
             InputView(
-                text: email,
+                text: $email,
                 title: "Email",
                 placeholder: "Enter email"
             )
             InputView(
-                text: password,
+                text: $password,
                 title: "Password",
                 placeholder: "Enter password",
                 isSecureField: true
@@ -56,8 +58,7 @@ struct LoginView: View {
             
             VStack {
                 Button {
-                    print(email, password)
-                    signIn()
+                    register ? signUp() : signIn()
                     UserDefaults.standard.set(true, forKey: Constants.isAuthorizedFlowKey)
                 } label: {
                     Text(register ? "register" : "login")
@@ -67,6 +68,7 @@ struct LoginView: View {
                     
                 }
                 Button {
+                    logger.info("Logging \(name) and \(password)")
                     register.toggle()
                 }label: {
                     HStack {
@@ -102,6 +104,19 @@ extension LoginView {
             }
         }
     }
+    func signUp() {
+        Task {
+            do {
+                
+                try await authManager.signUp(Credentials(email: email, password: password))
+                eventSubject.send(.login)
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 extension LoginView: EventEmitting {

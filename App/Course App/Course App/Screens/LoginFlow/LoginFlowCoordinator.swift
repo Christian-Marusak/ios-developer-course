@@ -33,7 +33,7 @@ class LoginFlowCoordinator: NSObject, NavigationControllerCoordinator {
 // MARK: - Factories
 private extension LoginFlowCoordinator {
     func makeLoginView() -> UIViewController {
-        let loginView = LoginView(password: "Password", email: "email")
+        let loginView = LoginView()
         loginView.eventPublisher.sink { [weak self] event in
             guard let self else { return }
             switch event {

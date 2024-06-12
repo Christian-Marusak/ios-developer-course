@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InputView: View {
     
-    @State var text: String
+    @Binding var text: String
     let title: String
     let placeholder: String
     var isSecureField: Bool = false
@@ -32,5 +32,5 @@ struct InputView: View {
 }
 
 #Preview {
-    InputView(text: "Text", title: "Title", placeholder: "Placeholder")
+    InputView(text: .constant("Text"), title: "Title", placeholder: "Placeholder")
 }
