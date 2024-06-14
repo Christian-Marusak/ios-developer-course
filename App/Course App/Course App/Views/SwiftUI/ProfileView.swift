@@ -1,0 +1,51 @@
+//
+//  ProfileView.swift
+//  Course App
+//
+//  Created by Christián on 26/05/2024.
+//
+
+import SwiftUI
+import UIKit
+import Combine
+
+enum ProfileViewEvent {
+    case logout
+    case showOnboarding
+}
+
+struct ProfileView: View {
+    
+    private let eventSubject = PassthroughSubject<ProfileViewEvent, Never>()
+    
+    var body: some View {
+        Text("Profile View")
+        Button(action: {
+            eventSubject.send(.showOnboarding)
+        }, label: {
+            Text("Start onboarding inside profile view")
+        })
+        Button(action: {
+            Task {
+                do {
+                    try await FirebaseAuthManager().signOut()
+                } catch {
+                    logger.info("Logout failed with error \(error.localizedDescription)")
+                }
+                eventSubject.send(.logout)
+            }
+        }, label: {
+            Text("Logout")
+        })
+    }
+}
+
+extension ProfileView: EventEmitting {
+    var eventPublisher: AnyPublisher<ProfileViewEvent, Never> {
+        eventSubject.eraseToAnyPublisher()
+    }
+}
+
+#Preview {
+    ProfileView()
+}
