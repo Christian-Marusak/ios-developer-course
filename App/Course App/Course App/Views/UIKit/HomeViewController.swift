@@ -16,7 +16,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet private var categoriesCollectionView: UICollectionView!
     
     // MARK: Data Source
-    private lazy var dataProvider = MockDataProvider()
+    @ObservedObject private var dataProvider: RealDataProvider = RealDataProvider()
     
     typealias DataSource = UICollectionViewDiffableDataSource<
         SectionData,
@@ -42,6 +42,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setup()
         title = "Categories"
+        dataProvider.fetchData()
         readData()
     }
 }
@@ -70,7 +71,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDiffableDataSource
 private extension HomeViewController {
     func readData() {
-        dataProvider.$data.sink {[weak self] data in
+        dataProvider.$data.sink { [weak self] data in
             debugPrint(
                 data
             )
@@ -176,7 +177,6 @@ private extension HomeViewController {
     func setup() {
         setupCollectionView()
     }
-    
     
     func setupCollectionView() {
         categoriesCollectionView.backgroundColor = .bg

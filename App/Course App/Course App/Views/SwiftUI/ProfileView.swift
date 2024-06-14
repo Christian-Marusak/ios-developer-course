@@ -26,8 +26,14 @@ struct ProfileView: View {
             Text("Start onboarding inside profile view")
         })
         Button(action: {
-            eventSubject.send(.logout)
-            UserDefaults.standard.set(false, forKey: Constants.isAuthorizedFlowKey)
+            Task {
+                do {
+                    try await FirebaseAuthManager().signOut()
+                } catch {
+                    logger.info("Logout failed with error \(error.localizedDescription)")
+                }
+                eventSubject.send(.logout)
+            }
         }, label: {
             Text("Logout")
         })

@@ -13,6 +13,7 @@ enum FontSize: CGFloat {
     case size28 = 28
     case size20 = 20
     case size12 = 12
+    case size18 = 18
 }
 
 enum FontType: String {
@@ -41,12 +42,15 @@ struct TextColorModifier: ViewModifier {
 
 
 enum TextType {
+    case baseText
     case h1Title
     case futuraTitle
     case h2Title
     
     var font: Font {
         switch self {
+        case .baseText:
+                .regular(with: .size18)
         case .h1Title:
     .bold(with: .size36)
         case .futuraTitle:

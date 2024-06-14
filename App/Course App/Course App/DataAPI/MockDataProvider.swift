@@ -22,14 +22,24 @@ struct SectionData: Identifiable, Hashable {
 }
 
 struct Joke: Identifiable, Hashable {
-    let id = UUID()
+    var id = UUID().uuidString
     let text: String
-    let image = mockImages.randomElement()
+    var image: UIImage?
+    var categories: [String] = []
+    var liked: Bool?
 }
 
-final class MockDataProvider: ObservableObject {
+extension Joke {
+    init(jokeResponse: JokeResponse, liked: Bool?) {
+        self.id = jokeResponse.id
+        self.text = jokeResponse.value
+        self.categories = jokeResponse.categories
+        self.liked = liked
+    }
+}
+
+final class MockDataProvider: DataProvider, ObservableObject {
     @Published var data: [SectionData]
-    var number4 = 4
     // MARK: Data
     private var localData = [
         SectionData(

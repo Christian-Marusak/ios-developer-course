@@ -7,68 +7,80 @@
 
 import SwiftUI
 typealias Action<T> = (T) -> Void
+
 struct SwipingCard: View {
-    
+    // MARK: - SwipeDirection
     enum SwipeDirection {
         case left
         case right
     }
-    
+
+    // MARK: - SwipeState
     enum SwipeState {
         case swiping(direction: SwipeDirection)
         case finished(direction: SwipeDirection)
         case cancelled
     }
-    
-    //MARK: Config
-    public struct Configuration: Equatable {
-        let image: Image
+
+    // MARK: - Configuration
+    struct Configuration: Equatable {
         let title: String
         let description: String
-        
-        public init(
-            image: Image,
-            title: String,
-            description: String
-        ) {
-            self.image = image
-            self.title = title
-            self.description = description
-        }
     }
+
+    // MARK: - UI constant
+    private enum UIConstant {
+        static let opacity: CGFloat = 0.7
+        static let backgroundColor: Color = .bg.opacity(opacity)
+        static let scratchViewSizeScale: CGFloat = 0.5
+        static let rotationEffect: CGFloat = 40
+        static let baseSwipeOpacity: CGFloat = 0.6
+    }
+
+    // MARK: - Swipe weight
+    private enum SwipeWeight {
+        static let swipeDetection: CGFloat = 60
+        static let minSwipe: CGFloat = 200
+        static let maxSwipe: CGFloat = 500
+    }
+
+    // MARK: Private variables
     private let swipingAction: Action<SwipeState>
     private let configuration: Configuration
     @State private var offset: CGSize = .zero
-    @State private var color: Color = .black.opacity(0.7)
-    
-    public init(configuration: Configuration, swipeStateAction: @escaping (Action<SwipeState>)) {
-        
+    @State private var color: Color = UIConstant.backgroundColor
+
+    init(
+        configuration: Configuration,
+        swipeStateAction: @escaping (Action<SwipeState>)
+    ) {
         self.configuration = configuration
         self.swipingAction = swipeStateAction
     }
-//MARK: View
-    
+
+    // MARK: View
     var body: some View {
-        HStack {
-             Spacer()
-            VStack{
+        GeometryReader { geometry in
+            VStack {
                 Spacer()
-                    //scratchView
-                ScratchView(image: configuration.image, text: configuration.description)
+                ScratchView(
+                    text: configuration.description
+                )
+                .frame(height: geometry.size.height * UIConstant.scratchViewSizeScale)
                 Spacer()
                 cardDescription
             }
-            Spacer()
         }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .center)
         .background(color)
-        .cornerRadius(15)
-        .offset(x: offset.width, y: offset.height * 0.5)
-        .rotationEffect(.degrees(Double(offset.width / 40)))
+        .cornerRadius(CornerRadiusSize.default.rawValue)
+        .offset(x: offset.width, y: offset.height * UIConstant.scratchViewSizeScale)
+        .rotationEffect(.degrees(Double(offset.width / UIConstant.rotationEffect)))
         .gesture(dragGesture)
     }
-    
-    //MARK: Drag Gesture
-    
+
+    // MARK: Drag gesture
     private var dragGesture: some Gesture {
         DragGesture()
             .onChanged { gesture in
@@ -83,71 +95,72 @@ struct SwipingCard: View {
                 }
             }
     }
-    
-    //MARK: Card Description
+
+    // MARK: CardDescription
     private var cardDescription: some View {
         Text(configuration.title)
-            .foregroundStyle(.white)
-            .fontWeight(.bold)
-            .padding(10)
-            .background(Color.black.opacity(0.5))
-            .cornerRadius(10)
+            .textTypeModifier(textType: .futuraTitle)
+            .cornerRadius(CornerRadiusSize.default.rawValue)
             .padding()
     }
 }
 
-
-//MARK: Swipe Logic
+// MARK: - Swipe logic
 private extension SwipingCard {
     func finishSwipe(translation: CGSize) {
         // swipe left
-        if -500...(-200) ~= translation.width {
-            offset = CGSize(width: -500, height: 0)
+        if -SwipeWeight.maxSwipe...(-SwipeWeight.minSwipe) ~= translation.width {
+            offset = CGSize(
+                width: -SwipeWeight.maxSwipe,
+                height: 0
+            )
             swipingAction(.finished(direction: .left))
-        } else if 200...500 ~= translation.width  { //swipe right
-            offset = CGSize(width: 500, height: 0)
+        } else if SwipeWeight.minSwipe...SwipeWeight.maxSwipe ~= translation.width {
+            // swipe right
+            offset = CGSize(
+                width: SwipeWeight.maxSwipe,
+                height: 0
+            )
             swipingAction(.finished(direction: .right))
         } else {
+            // re-center
             offset = .zero
-            color = .bg.opacity(0.7)
+            color = UIConstant.backgroundColor
             swipingAction(.cancelled)
         }
     }
-    
+
     func swiping(translation: CGSize) {
-        //swipe left
-        if translation.width < -60 {
-            color = .green
-                .opacity(Double(abs(translation.width) / 500) + 0.6)
+        // swipe left
+        if translation.width < -SwipeWeight.swipeDetection {
+            color = .red
+                .opacity(countOpacity(offset: translation.width))
             swipingAction(.swiping(direction: .left))
-        } else if translation.width > 60 {
-                color = .red
-                    .opacity(Double(translation.width / 500) + 0.6) //swipe right
+        } else if translation.width > SwipeWeight.swipeDetection {
+            // swipe right
+            color = .green
+                .opacity(countOpacity(offset: translation.width))
             swipingAction(.swiping(direction: .right))
         } else {
-            color = .bg.opacity(0.7)
+            color = UIConstant.backgroundColor
             swipingAction(.cancelled)
         }
     }
+
+    func countOpacity(offset: Double) -> CGFloat {
+        Double(abs(offset) / SwipeWeight.maxSwipe) + UIConstant.baseSwipeOpacity
+    }
 }
-
-
-
-
-
-
 
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
         SwipingCard(
             configuration: SwipingCard.Configuration(
-                image: Image("nature"),
                 title: "Card Title",
                 description: "This is a short description. This is a short description. This is a short description. This is a short description. This is a short description."
             ),
             swipeStateAction: { _ in }
         )
         .previewLayout(.sizeThatFits)
-        .frame(width: 220, height: 340)
     }
 }

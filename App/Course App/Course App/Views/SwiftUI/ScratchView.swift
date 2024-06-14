@@ -7,41 +7,59 @@
 
 import SwiftUI
 
-struct Line {
-    var points = [CGPoint]()
-    var lineWidth: Double = 50.0
-}
-
 struct ScratchView: View {
-    //MARK: Variables
-    let image: Image
+    // MARK: - Line
+    private struct Line {
+        var points = [CGPoint]()
+    }
+
+    // MARK: - UIConstant
+    private enum UIConstant {
+        static let lineWidth: Double = 50.0
+    }
+
+    // MARK: Public variables
     let text: String
-    
+
+    // MARK: Private variables
     @State private var currentLine = Line()
     @State private var lines = [Line]()
-    
-    
-    
+
     var body: some View {
         ZStack(alignment: .top) {
-            image
-                .resizableBordered(cornerRadius: 10)
-                .scaledToFit()
-            
-            RoundedRectangle(cornerRadius: 10 )
+            if let url = try?
+                ImagesRouter.size300x200.asURLRequest().url {
+                AsyncImage(url: url) { image in
+                    image.resizableBordered()
+                        .scaledToFit()
+                } placeholder: {
+                    Color.gray
+                }
+            } else {
+                Text("ERROR MESSAGE")
+            }
+
+            RoundedRectangle(cornerRadius: CornerRadiusSize.default.rawValue)
                 .fill(.bg)
                 .overlay {
                     Text(text)
-                        .foregroundStyle(.white)
+                        .textTypeModifier(textType: .baseText)
                         .multilineTextAlignment(.center)
                         .padding()
                 }
-                .mask (
+                .mask(
                     Canvas { context, _ in
                         for line in lines {
                             var path = Path()
                             path.addLines(line.points)
-                            context.stroke(path, with: .color(.white), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round, lineJoin: .round)
+                            context.stroke(
+                                path,
+                                with: .color(.white),
+                                style: StrokeStyle(
+                                    lineWidth: UIConstant.lineWidth,
+                                    lineCap: .round,
+                                    lineJoin: .round
+                                )
                             )
                         }
                     }
@@ -49,17 +67,17 @@ struct ScratchView: View {
                 .gesture(dragGesture)
         }
     }
-    
+
+    // MARK: Drag gesture
     private var dragGesture: some Gesture {
-        DragGesture(minimumDistance: 0,coordinateSpace: .local)
+        DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
-                let newPoint = value.location
-                currentLine.points.append(newPoint)
+                currentLine.points.append(value.location)
                 lines.append(currentLine)
             }
     }
 }
 
 #Preview {
-    ScratchView(image: Image("nature"), text: "Joke")
+    ScratchView(text: "Joke")
 }

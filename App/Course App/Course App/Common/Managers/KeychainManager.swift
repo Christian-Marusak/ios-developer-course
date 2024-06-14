@@ -8,11 +8,7 @@
 import UIKit
 import KeychainAccess
 
-protocol KeychainManaging {
-    func store<T: Encodable>(key: String, value: T) throws
-    func fetch<T: Decodable>(key: String) throws -> T
-    func remove(key: String) throws
-}
+
 
 //class MockKeychainManager: KeychainManaging {
 //    func store(key: String, value: some Encodable) throws {
@@ -20,15 +16,30 @@ protocol KeychainManaging {
 //    }
 //}
 
+protocol KeychainServicing {
+    func storeAuthData(authData: String) throws
+    func removeAuthData() throws
+}
+
 class KeychainService: KeychainServicing {
-    let keychainManager: KeychainManaging = KeychainManager()
+    var keychainManager: KeychainManaging
     func storeAuthData(authData: String) throws {
         try keychainManager.store(key: "authDataByApp", value: authData)
     }
+    
+    func removeAuthData() throws {
+        try keychainManager.remove(key: "authDataByApp")
+    }
+    
+    init(keychainManager: KeychainManaging) {
+        self.keychainManager = keychainManager
+    }
 }
 
-protocol KeychainServicing {
-    func storeAuthData(authData: String) throws
+protocol KeychainManaging {
+    func store<T: Encodable>(key: String, value: T) throws
+    func fetch<T: Decodable>(key: String) throws -> T
+    func remove(key: String) throws
 }
 
 class KeychainManager: KeychainManaging {

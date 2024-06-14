@@ -5,7 +5,8 @@
 //  Created by Christián on 24/05/2024.
 //
 
-import Foundation
+
+import FirebaseAuth
 import UIKit
 import Combine
 
@@ -13,11 +14,10 @@ protocol AppCoordinating: ViewControllerCoordinator {}
 
 enum Constants {
     static let showOnboardingKey = "showOnboardingPage"
-    static let isAuthorizedFlowKey = "isAuthorizedFlow"
 }
 
 final class AppCoordinator: AppCoordinating, ObservableObject {
-    @Published var isAuthorizedFlow: Bool = UserDefaults.standard.bool(forKey: Constants.isAuthorizedFlowKey)
+    @Published var isAuthorizedFlow: Bool = Auth.auth().currentUser != nil
     
     init() {
         if isAuthorizedFlow {

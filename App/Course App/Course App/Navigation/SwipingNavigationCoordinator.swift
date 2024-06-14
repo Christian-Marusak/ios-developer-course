@@ -18,7 +18,7 @@ final class SwipingNavigationCoordinator: NSObject, NavigationControllerCoordina
     var childCoordinators = [Coordinator]()
     
     func start() {
-        navigationController.setViewControllers([makeSwipingCard(), makeSwipingCard(), makeSwipingCard()], animated: false)
+        navigationController.setViewControllers([makeSwipingCard()], animated: false)
     }
     
     

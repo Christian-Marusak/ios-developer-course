@@ -6,8 +6,13 @@
 
 import SwiftUI
 
+enum CornerRadiusSize: CGFloat {
+    case `default` = 10
+    case extra = 15
+}
+
 extension Image {
-    func resizableBordered(cornerRadius: CGFloat) -> some View {
+    func resizableBordered(_ cornerRadius: CGFloat = CornerRadiusSize.default.rawValue) -> some View {
         self
             .resizable()
             .scaledToFill()

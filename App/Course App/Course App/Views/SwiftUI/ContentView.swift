@@ -9,12 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     enum MagicNumbers: CGFloat {
-        case numberTen = 10
-        case numebrFive = 5
-        
-        func asCGFloat() -> CGFloat {
-            return CGFloat(self.rawValue)
-        }
+        case numberFive = 5
     }
     
     @StateObject var dataProvider = MockDataProvider()
@@ -32,7 +27,7 @@ struct ContentView: View {
                         ForEach(section.jokes) { joke in
                             ZStack(alignment: .bottomLeading, content: {
                                 Image(uiImage: joke.image ?? UIImage())
-                                    .resizableBordered(cornerRadius: MagicNumbers.numberTen.asCGFloat())
+                                    .resizableBordered()
                                     .onTapGesture {
                                         debugPrint("Tapped joke \(joke)")
                                     }
@@ -41,13 +36,13 @@ struct ContentView: View {
                         }
                     }
                     .background(.bg)
-                    .padding(.leading, MagicNumbers.numebrFive.asCGFloat())
-                    .padding(.trailing, MagicNumbers.numebrFive.asCGFloat())
+                    .padding(.leading, MagicNumbers.numberFive.rawValue)
+                    .padding(.trailing, MagicNumbers.numberFive.rawValue)
                 } header: {
                     Text(section.title)
                         .foregroundStyle(.white)
-                        .padding(.leading, MagicNumbers.numebrFive.asCGFloat())
-                        .padding(.trailing, MagicNumbers.numebrFive.asCGFloat())
+                        .padding(.leading, MagicNumbers.numberFive.rawValue)
+                        .padding(.trailing, MagicNumbers.numberFive.rawValue)
                 }
                 .background(.bg)
                 .listRowInsets(EdgeInsets())

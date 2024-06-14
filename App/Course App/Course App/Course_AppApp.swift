@@ -26,8 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-    FirebaseApp.configure()
-        deeplinkFromService()
+    deeplinkFromService()
     return true
 }
     
@@ -42,36 +41,38 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
 }
 
-
 @main
 // swiftlint:disable:next type_name
 struct Course_AppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @ObservedObject var appCoordinator = AppCoordinator()
+    @ObservedObject var appCoordinator: AppCoordinator
     
     private let logger = Logger()
     
     init() {
+        FirebaseApp.configure()
+        appCoordinator = AppCoordinator()
         appCoordinator.start()
         delegate.deeplinkHandler = appCoordinator
     }
     
     var body: some Scene {
         WindowGroup {
-            rootView
+            CoordinatorView(coordinator: appCoordinator)
+                .id(appCoordinator.isAuthorizedFlow)
                 .ignoresSafeArea(edges: .all)
-                .onAppear{
+                .onAppear {
                     logger.info("Content view has appeared")
                 }
         }
     }
     
-    @ViewBuilder var rootView: some View {
-        if appCoordinator.isAuthorizedFlow {
-            CoordinatorView(coordinator: appCoordinator)
-        } else {
-            CoordinatorView(coordinator: appCoordinator)
-        }
-    }
+//    @ViewBuilder var rootView: some View {
+//        if appCoordinator.isAuthorizedFlow {
+//            CoordinatorView(coordinator: appCoordinator)
+//        } else {
+//            CoordinatorView(coordinator: appCoordinator)
+//        }
+//    }
 }
 
