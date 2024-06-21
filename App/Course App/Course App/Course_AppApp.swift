@@ -9,6 +9,7 @@ import FirebaseCore
 import UIKit
 import SwiftUI
 import os
+import DependencyInjection
 //
 enum Deeplink {
     case onboarding(page: Int)
@@ -22,6 +23,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     weak var deeplinkHandler: AppCoordinator?
    
+
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -44,6 +47,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 // swiftlint:disable:next type_name
 struct Course_AppApp: App {
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @ObservedObject var appCoordinator: AppCoordinator
     

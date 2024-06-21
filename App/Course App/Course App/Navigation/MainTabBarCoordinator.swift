@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import DependencyInjection
 
 enum MainTabBarCoordinatorEvent {
     case logout(_ coordinator: MainTabBarCoordinator)
@@ -18,6 +19,11 @@ final class MainTabBarCoordinator: NSObject, TabBarControllerCoordinator {
     private(set) lazy var tabBarController = makeTabBarController()
     private var eventSubject = PassthroughSubject<MainTabBarCoordinatorEvent, Never>()
     private lazy var cancellables = Set<AnyCancellable>()
+    var container: Container
+    
+    init(container: Container) {
+        self.container = container
+    }
 }
 
 // MARK: -Start coordinator
@@ -44,7 +50,7 @@ extension MainTabBarCoordinator {
 // MARK: Factory Method
 private extension MainTabBarCoordinator {
     func makeOnboardingCoordinator(_ page: Int) -> ViewControllerCoordinator {
-        let coordinator = OnboardingNavigationCoordinator()
+        let coordinator = OnboardingNavigationCoordinator(container: container)
         
         coordinator.eventPublisher.sink { [weak self] event in
             self?.handle(event: event)
@@ -81,26 +87,20 @@ private extension MainTabBarCoordinator {
     
     func setupSwipingCardView() -> UIViewController {
         
-        let swipingCoordinator = SwipingNavigationCoordinator()
+        let swipingCoordinator = SwipingNavigationCoordinator(container: container)
         startChildCoordinator(swipingCoordinator)
-        
-        let viewController = UIHostingController(rootView: SwipingView())
+        let storeManager = container.resolve(type: StoreManaging.self)
+        let viewController = UIHostingController(rootView: SwipingView(store: SwipingViewStore(store: storeManager)))
         viewController.title = "Scratch view"
         
         swipingCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(systemName: "switch.2"), tag: 1)
         swipingCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .medium)], for: .normal)
-        
-//        let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = .brown
-//        appearance.shadowImage = UIImage()
-//        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .medium)]
-        
-        
+
         return swipingCoordinator.rootViewController
     }
     
     func setupProfileView() -> UIViewController {
-        let profileCoordinator = ProfileNavigationCoordinator()
+        let profileCoordinator = ProfileNavigationCoordinator(container: container)
         startChildCoordinator(profileCoordinator)
         
         let viewController = UIHostingController(rootView: ProfileView())

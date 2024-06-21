@@ -7,14 +7,19 @@
 import SwiftUI
 import UIKit
 import Combine
+import DependencyInjection
 
 
 final class ProfileNavigationCoordinator: NSObject, NavigationControllerCoordinator {
     
+    init(container: Container) {
+        self.container = container
+    }
+    
     deinit {
         print("Deinit ProfileNavigationCoordinator")
     }
-        
+    var container: Container
     var childCoordinators = [Coordinator]()
     private(set) lazy var navigationController: UINavigationController = CustomNavigationController()
     private var cancellables = Set<AnyCancellable>()

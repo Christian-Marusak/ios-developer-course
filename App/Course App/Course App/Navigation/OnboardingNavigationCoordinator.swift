@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import DependencyInjection
 
 protocol OnboardingCoordinating: NavigationControllerCoordinator {
     func pushNewPage(from page: Int)
@@ -23,7 +24,7 @@ final class OnboardingNavigationCoordinator: OnboardingCoordinating {
     
    
     static private(set) var numberOfPages: Int = 3
-    
+    var container: Container
     func pushNewPage(from page: Int) {
         if page < Self.numberOfPages - 1 {
             navigationController.pushViewController(makeOnboardingView(page: page + 1), animated: true)
@@ -31,6 +32,9 @@ final class OnboardingNavigationCoordinator: OnboardingCoordinating {
             navigationController.popToRootViewController(animated: true)
         }
         
+    }
+    init(container: Container) {
+        self.container = container
     }
     
     func handleDeepling(deeplink: Deeplink) {

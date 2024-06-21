@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import DependencyInjection
 
 enum SignInNavigationCoordinatorEvent {
     case login(_ coordinator: LoginFlowCoordinator)
@@ -16,10 +17,15 @@ enum SignInNavigationCoordinatorEvent {
 class LoginFlowCoordinator: NSObject, NavigationControllerCoordinator {
     private(set) lazy var navigationController: UINavigationController = CustomNavigationController()
     
+    var container: Container
     private let eventSubject = PassthroughSubject<SignInNavigationCoordinatorEvent, Never>()
     private var cancellables = Set<AnyCancellable>()
     
     var childCoordinators = [Coordinator]()
+    
+    init(container: Container) {
+        self.container = container
+    }
     
     func start() {
         navigationController.setViewControllers([makeLoginView()], animated: false)

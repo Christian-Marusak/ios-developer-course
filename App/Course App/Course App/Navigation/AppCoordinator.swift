@@ -9,6 +9,7 @@
 import FirebaseAuth
 import UIKit
 import Combine
+import DependencyInjection
 
 protocol AppCoordinating: ViewControllerCoordinator {}
 
@@ -17,9 +18,13 @@ enum Constants {
 }
 
 final class AppCoordinator: AppCoordinating, ObservableObject {
+    var container = Container()
+    
     @Published var isAuthorizedFlow: Bool = Auth.auth().currentUser != nil
     
     init() {
+        
+        
         if isAuthorizedFlow {
             rootViewController = makeTabBarFlow()
         } else {
@@ -40,11 +45,17 @@ extension AppCoordinator {
     
     func start() {
         setupAppUI()
+        assembleDependencyInjectionContainer()
+    }
+    
+    func assembleDependencyInjectionContainer() {
+        ManagerRegistration.registerDependencies(to: container)
+//        ServiceManager.registerDependencies(to: container)
+//        StoreRegistration.registerDependencies(to: container)
     }
     
     func setupAppUI() {
         UITabBar.appearance().backgroundColor = .brown
-        UITabBar.appearance().tintColor = .white
         UINavigationBar.appearance().backgroundColor = .red
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.bold(with: .size28), .foregroundColor: UIColor.blue]
     }
@@ -64,7 +75,7 @@ extension AppCoordinator {
 // MARK: - Factory methods
 private extension AppCoordinator {
     func makeLoginFlow() -> UIViewController {
-        let coordinator = LoginFlowCoordinator()
+        let coordinator = LoginFlowCoordinator(container: container)
         startChildCoordinator(coordinator)
         coordinator.eventPublisher.sink { [weak self] event in
             self?.handle(event)
@@ -74,7 +85,7 @@ private extension AppCoordinator {
     }
     
     func makeTabBarFlow() -> UIViewController {
-        let coordinator = MainTabBarCoordinator()
+        let coordinator = MainTabBarCoordinator(container: container)
         startChildCoordinator(coordinator)
         coordinator.eventPublisher.sink { [weak self] event in
             self?.handle(event)
