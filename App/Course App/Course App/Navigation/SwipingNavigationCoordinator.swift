@@ -4,39 +4,43 @@
 //
 //  Created by Christián on 25/05/2024.
 //
-import Combine
-import UIKit
-import SwiftUI
-import DependencyInjection
 
-final class SwipingNavigationCoordinator: NSObject, NavigationControllerCoordinator {
-    func handleDeepling(deeplink: Deeplink) {
-        
-    }
-    
+import Combine
+import DependencyInjection
+import os
+import SwiftUI
+import UIKit
+
+final class SwipingViewNavigationCoordinator: NSObject, NavigationControllerCoordinator, CancellablesContaining, SwipingViewFactory {
+    // MARK: Private properties
     private(set) lazy var navigationController: UINavigationController = CustomNavigationController()
-    var container: Container
+    private let logger = Logger()
+    // MARK: Public properties
     var childCoordinators = [Coordinator]()
-    private var cancellables = Set<AnyCancellable>()
-    
-    func start() {
-        navigationController.setViewControllers([makeSwipingCard()], animated: false)
+    var cancellables = Set<AnyCancellable>()
+    var container: Container
+    // MARK: Lifecycle
+    deinit {
+        logger.info("Deinit SwipingViewNavigationCoordinator")
     }
+
     init(container: Container) {
         self.container = container
     }
-    
-    
+}
+// MARK: - Start
+extension SwipingViewNavigationCoordinator {
+    func start() {
+        navigationController.setViewControllers([makeSwipingView()], animated: false)
+    }
 }
 
-// MARK: - Factories
-private extension SwipingNavigationCoordinator {
-    func makeSwipingCard() -> UIViewController {
-        
-        let store = container.resolve(type: SwipingViewStore.self)
-        store.eventPublisher.sink { [weak self] event in
-            self?.navigationController.popToRootViewController(animated: true)
-        }.store(in: &cancellables)
-       return UIHostingController(rootView: SwipingView(store: store))
+// MARK: - SwipingViewEvent handling
+extension SwipingViewNavigationCoordinator {
+    func handleSwipingViewEvent(_ event: SwipingViewEvent) {
+        switch event {
+        case .dismiss:
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }

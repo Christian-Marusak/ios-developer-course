@@ -14,4 +14,5 @@ enum NetworkingError: Error {
     case decodingFailed(error: Error)
     case invalidUrlComponents
     case firestoreError(error: Error)
+    case badImageData
 }

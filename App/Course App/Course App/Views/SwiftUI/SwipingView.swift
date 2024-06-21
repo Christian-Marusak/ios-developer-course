@@ -16,65 +16,56 @@ struct SwipingView: View {
         }
         static let scale: CGFloat = 1.5
     }
-    
     @StateObject private var store: SwipingViewStore
+    private var joke: Joke?
     
-    init(store: SwipingViewStore) {
+    init(store: SwipingViewStore, joke: Joke?) {
         _store = .init(wrappedValue: store)
+        self.joke = joke
     }
-    
-
-
-    
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                if store.viewState.status == .loading {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                } else {
-                    ZStack {
-                        ForEach(store.viewState.jokes, id: \.self) { joke in
-                            SwipingCard(
-                                configuration: SwipingCard.Configuration(
-                                    title: joke.categories.first ?? "",
-                                    description: joke.text
-                                ),
-                                swipeStateAction: { action in
-                                    switch action {
-                                    case let .finished(direction):
-                                        store.send(.didLike(joke.id, direction == .right))
-                                    default:
-                                        break
-                                    }
+                ZStack {
+                    ForEach(store.state.jokes, id: \.self) { joke in
+                        SwipingCard(
+                            configuration: SwipingCard.Configuration(
+                                title: joke.categories.first ?? "",
+                                description: joke.text
+                            ),
+                            swipeStateAction: { action in
+                                switch action {
+                                case let .finished(direction):
+                                    store.send(.didLike(joke.id, direction == .right))
+                                default:
+                                    break
                                 }
-                            )
-                        }
-                        .padding(.leading, UIConstant.padding)
-                        .padding(.trailing, UIConstant.padding)
-                        .padding(.top, UIConstant.cardWidthPadding)
-                        .frame(
-                            width: geometry.size.width - UIConstant.cardWidthPadding,
-                            height: (geometry.size.width - UIConstant.cardWidthPadding) * UIConstant.scale
+                            }
                         )
                     }
-                    
-                    Spacer()
+                    .padding(.leading, UIConstant.padding)
+                    .padding(.trailing, UIConstant.padding)
+                    .padding(.top, UIConstant.cardWidthPadding)
+                    .frame(
+                        width: geometry.size.width - UIConstant.cardWidthPadding,
+                        height: (geometry.size.width - UIConstant.cardWidthPadding) * UIConstant.scale
+                    )
                 }
+
+                Spacer()
             }
             .frame(maxWidth: .infinity, alignment: .center)
         }
         .onFirstAppear {
-            store.send(.viewDidLoad)
+            store.send(.viewDidLoad(joke))
         }
         .navigationTitle("Random jokes")
         .embedInScrollViewIfNeeded()
     } 
     
-
 }
 
 //#Preview {
-//    SwipingView(store: SwipingViewStore())
+//    SwipingView()
 //}

@@ -5,10 +5,10 @@
 //  Created by Christián on 25/05/2024.
 //
 
+import DependencyInjection
 import UIKit
 import SwiftUI
 import Combine
-import DependencyInjection
 
 protocol OnboardingCoordinating: NavigationControllerCoordinator {
     func pushNewPage(from page: Int)
@@ -19,12 +19,14 @@ enum OnboardingNavigationEvent {
 }
 
 final class OnboardingNavigationCoordinator: OnboardingCoordinating {
+    var container: Container
     
-    
-    
+    init(container: Container) {
+        self.container = container
+    }
    
     static private(set) var numberOfPages: Int = 3
-    var container: Container
+    
     func pushNewPage(from page: Int) {
         if page < Self.numberOfPages - 1 {
             navigationController.pushViewController(makeOnboardingView(page: page + 1), animated: true)
@@ -32,9 +34,6 @@ final class OnboardingNavigationCoordinator: OnboardingCoordinating {
             navigationController.popToRootViewController(animated: true)
         }
         
-    }
-    init(container: Container) {
-        self.container = container
     }
     
     func handleDeepling(deeplink: Deeplink) {

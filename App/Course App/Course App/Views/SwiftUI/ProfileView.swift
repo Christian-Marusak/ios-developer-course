@@ -16,10 +16,15 @@ enum ProfileViewEvent {
 
 struct ProfileView: View {
     
+    @State var name: String?
+    
+    private var authManager: FirebaseAuthManaging = FirebaseAuthManager()
+    private var storeManager: FirebaseStoreManager = FirebaseStoreManager()
+    
     private let eventSubject = PassthroughSubject<ProfileViewEvent, Never>()
     
     var body: some View {
-        Text("Profile View")
+        Text(name ?? "Profile View").font(.title)
         Button(action: {
             eventSubject.send(.showOnboarding)
         }, label: {
@@ -28,7 +33,7 @@ struct ProfileView: View {
         Button(action: {
             Task {
                 do {
-                    try await FirebaseAuthManager().signOut()
+                    try await authManager.signOut()
                 } catch {
                     logger.info("Logout failed with error \(error.localizedDescription)")
                 }
@@ -36,7 +41,20 @@ struct ProfileView: View {
             }
         }, label: {
             Text("Logout")
-        })
+        }).onFirstAppear {
+            Task {
+                try await getLoggedUserName()
+            }
+        }
+    }
+    
+}
+
+private extension ProfileView {
+    @MainActor
+    func getLoggedUserName() async throws {
+        let userDetails = try await storeManager.fetchUserDetails()
+        name = userDetails.name
     }
 }
 

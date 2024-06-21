@@ -64,7 +64,7 @@ struct ContentView: View {
             } label: {
                 Image(systemName: "heart")
             }
-            .buttonStyle(SelectableButtonStyle(color: .gray , isSelected: .constant(true)))
+            .buttonStyle(SelectableButtonStyle(isSelected: .constant(true), color: .gray))
         }
         .padding(5)
     }

@@ -5,27 +5,28 @@
 //  Created by Christián on 02/06/2024.
 //
 
+import DependencyInjection
 import UIKit
 import SwiftUI
 import Combine
-import DependencyInjection
 
 enum SignInNavigationCoordinatorEvent {
     case login(_ coordinator: LoginFlowCoordinator)
 }
 
 class LoginFlowCoordinator: NSObject, NavigationControllerCoordinator {
-    private(set) lazy var navigationController: UINavigationController = CustomNavigationController()
-    
     var container: Container
-    private let eventSubject = PassthroughSubject<SignInNavigationCoordinatorEvent, Never>()
-    private var cancellables = Set<AnyCancellable>()
-    
-    var childCoordinators = [Coordinator]()
     
     init(container: Container) {
         self.container = container
     }
+    
+    private(set) lazy var navigationController: UINavigationController = CustomNavigationController()
+    
+    private let eventSubject = PassthroughSubject<SignInNavigationCoordinatorEvent, Never>()
+    private var cancellables = Set<AnyCancellable>()
+    
+    var childCoordinators = [Coordinator]()
     
     func start() {
         navigationController.setViewControllers([makeLoginView()], animated: false)

@@ -4,13 +4,15 @@
 //
 //  Created by Christián on 26/05/2024.
 //
+
+import DependencyInjection
 import SwiftUI
 import UIKit
 import Combine
-import DependencyInjection
 
 
 final class ProfileNavigationCoordinator: NSObject, NavigationControllerCoordinator {
+    var container: Container
     
     init(container: Container) {
         self.container = container
@@ -19,7 +21,7 @@ final class ProfileNavigationCoordinator: NSObject, NavigationControllerCoordina
     deinit {
         print("Deinit ProfileNavigationCoordinator")
     }
-    var container: Container
+        
     var childCoordinators = [Coordinator]()
     private(set) lazy var navigationController: UINavigationController = CustomNavigationController()
     private var cancellables = Set<AnyCancellable>()

@@ -38,29 +38,20 @@ final class HorizontalCollectionCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     private var didTapCallback: Action<Joke>?
+    private var didLikeCallback: Action<Joke>?
     
 }
 
 // MARK: - Public methods
 extension HorizontalCollectionCollectionViewCell {
     
-    func configure(_ data: [Joke], callback: Action<Joke>? = nil) {
+    func configure(_ data: [Joke], callback: Action<Joke>? = nil, didLike: Action<Joke>? = nil) {
         self.data = data
         collectionView.reloadData()
-        self.didTapCallback = callback
+        didTapCallback = callback
+        didLikeCallback = didLike
     }
     
-    func setData(_ data: [Joke]) {
-        self.data = data
-        collectionView.reloadData()
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension HorizontalCollectionCollectionViewCell: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didTapCallback?(data[indexPath.row])
-    }
 }
 
 // MARK: - Setup UI
@@ -92,26 +83,30 @@ extension HorizontalCollectionCollectionViewCell: UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.contentConfiguration = UIHostingConfiguration {
-            if let url = try?
-                ImagesRouter.size300x200.asURLRequest().url {
-                AsyncImage(url: url) { image in
-                    image.resizableBordered()
-                        .scaledToFit()
-                } placeholder: {
-                    Color.gray
-                }
-            } else {
-                Text("ERROR MESSAGE")
-            }
+        let joke = data[indexPath.row]
+        cell.contentConfiguration = UIHostingConfiguration { [weak self] in
+            Image(uiImage: joke.image ?? UIImage())
+                .resizableBordered()
+                .scaledToFit()
+                .redacted(reason: joke.image == nil ? .placeholder : [])
+            Button(action: {
+                self?.didLikeCallback?(joke)
+            }, label: {
+                Image(systemName: "heart")
+            })
+            .buttonStyle(SelectableButtonStyle(isSelected: .constant(joke.liked), color: .gray))
         }
         return cell
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
-}
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        didTapCallback?(data[indexPath.row])
+    }
 
-extension UICollectionViewCell: ReusableIdentifier {}
+}

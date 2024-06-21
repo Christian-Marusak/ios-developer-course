@@ -5,25 +5,26 @@
 //  Created by Christián on 24/05/2024.
 //
 
+import DependencyInjection
 import UIKit
 import SwiftUI
 import Combine
-import DependencyInjection
 
 enum MainTabBarCoordinatorEvent {
     case logout(_ coordinator: MainTabBarCoordinator)
 }
 
 final class MainTabBarCoordinator: NSObject, TabBarControllerCoordinator {
-    var childCoordinators = [Coordinator]()
-    private(set) lazy var tabBarController = makeTabBarController()
-    private var eventSubject = PassthroughSubject<MainTabBarCoordinatorEvent, Never>()
-    private lazy var cancellables = Set<AnyCancellable>()
     var container: Container
     
     init(container: Container) {
         self.container = container
     }
+    
+    var childCoordinators = [Coordinator]()
+    private(set) lazy var tabBarController = makeTabBarController()
+    private var eventSubject = PassthroughSubject<MainTabBarCoordinatorEvent, Never>()
+    private lazy var cancellables = Set<AnyCancellable>()
 }
 
 // MARK: -Start coordinator
@@ -32,7 +33,7 @@ extension MainTabBarCoordinator {
         tabBarController.viewControllers = [
             setupCategoriesView(),
             setupSwipingCardView(),
-            setupProfileView()
+            setupProfileView(),
         ]
     }
     func handleDeepling(deeplink: Deeplink) {
@@ -79,23 +80,22 @@ private extension MainTabBarCoordinator {
     }
     
     func setupCategoriesView() -> UIViewController {
-        let categoriesNavigationController = UINavigationController(rootViewController: HomeViewController())
-        categoriesNavigationController.tabBarItem = UITabBarItem(title: "Categories", image: UIImage(systemName: "list.dash.header.rectangle"), tag: 0)
-        
-        return categoriesNavigationController
+        let homeCoordinator = HomeNavigationCoordinator(container: container)
+        startChildCoordinator(homeCoordinator)
+        homeCoordinator.rootViewController.tabBarItem = UITabBarItem(
+            title: "Categories",
+            image: UIImage(systemName: "list.dash.header.rectangle"),
+            tag: 0
+        )
+        return homeCoordinator.rootViewController
     }
     
     func setupSwipingCardView() -> UIViewController {
         
-        let swipingCoordinator = SwipingNavigationCoordinator(container: container)
+        let swipingCoordinator = SwipingViewNavigationCoordinator(container: container)
         startChildCoordinator(swipingCoordinator)
-        let storeManager = container.resolve(type: StoreManaging.self)
-        let viewController = UIHostingController(rootView: SwipingView(store: SwipingViewStore(store: storeManager)))
-        viewController.title = "Scratch view"
-        
         swipingCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(systemName: "switch.2"), tag: 1)
         swipingCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .medium)], for: .normal)
-
         return swipingCoordinator.rootViewController
     }
     

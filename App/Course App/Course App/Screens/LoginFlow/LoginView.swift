@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import FirebaseAuth
+import os
 // MARK: - User Interface of LoginView
 
 struct LoginView: View {
@@ -24,11 +25,15 @@ struct LoginView: View {
         case login
     }
     
+    @State private var name: String = ""
     @State private var email: String
     @State private var password: String
     @State private var action: Action = .signIn
+    
     private let authManager = FirebaseAuthManager()
+    private let storeManager = FirebaseStoreManager()
     private let eventSubject = PassthroughSubject<LoginEvent, Never>()
+    private let logger = Logger()
 
     init(email: String = "", password: String = "") {
         self.email = email
@@ -37,6 +42,9 @@ struct LoginView: View {
 
     var body: some View {
         Form {
+            if action == .signUp {
+                TextField("Name", text: $name)
+            }
             TextField("Email", text: $email)
             SecureField("Password", text: $password)
 
@@ -60,13 +68,18 @@ private extension LoginView {
                 case .signIn:
                     try await authManager.signIn(Credentials(email: email, password: password))
                 case  .signUp:
-                    try await authManager.signUp(Credentials(email: email, password: password))
+                   try await signUp()
                 }
                 eventSubject.send(.login)
             } catch {
-                print(error)
+                logger.error("Error: \(error.localizedDescription)")
             }
         }
+    }
+    
+    private func signUp() async throws {
+        try await authManager.signUp(Credentials(email: email, password: password))
+        try await storeManager.store(userDetails: UserDetails(name: name))
     }
 }
 

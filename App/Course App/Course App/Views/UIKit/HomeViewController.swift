@@ -10,13 +10,17 @@ import os
 import SwiftUI
 import UIKit
 
+enum HomeViewEvent {
+    case itemTapped(Joke)
+}
+
 final class HomeViewController: UIViewController {
     let logger = Logger()
     // swiftlint:disable:next prohibited_interface_builder
     @IBOutlet private var categoriesCollectionView: UICollectionView!
     
     // MARK: Data Source
-    @ObservedObject private var dataProvider: RealDataProvider = RealDataProvider()
+    private var dataProvider: RealDataProvider = RealDataProvider()
     
     typealias DataSource = UICollectionViewDiffableDataSource<
         SectionData,
@@ -36,7 +40,7 @@ final class HomeViewController: UIViewController {
     }
     private lazy var dataSource = makeDataSource()
     private lazy var cancellables = Set<AnyCancellable>()
-    
+    private let eventSubject = PassthroughSubject<HomeViewEvent, Never>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +76,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 private extension HomeViewController {
     func readData() {
         dataProvider.$data.sink { [weak self] data in
-            debugPrint(
-                data
-            )
             self?.applySnapshotData(
                 data: data,
                 animatingDifferences: true
@@ -89,14 +90,14 @@ private extension HomeViewController {
         data: [SectionData],
         animatingDifferences: Bool = true
     ) {
-        guard dataSource.snapshot().numberOfSections == .zero else {
-            let snapshot = dataSource.snapshot()
-            dataSource.apply(
-                snapshot,
-                animatingDifferences: animatingDifferences
-            )
-            return
-        }
+//        guard dataSource.snapshot().numberOfSections == .zero else {
+//            let snapshot = dataSource.snapshot()
+//            dataSource.apply(
+//                snapshot,
+//                animatingDifferences: animatingDifferences
+//            )
+//            return
+//        }
         
         
         var snapshot = Snapshot()
@@ -117,13 +118,22 @@ private extension HomeViewController {
     }
     
     func makeDataSource() -> DataSource {
-        let dataSource = DataSource(collectionView: categoriesCollectionView) { collectionView, indexPath, _ in
+        let dataSource = DataSource(collectionView: categoriesCollectionView) {
+            collectionView,
+            indexPath,
+            _ in
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             
             let collectionCell: HorizontalCollectionCollectionViewCell = collectionView.dequeueReusableCell(
                 for: indexPath
             )
-            collectionCell.setData(section.jokes)
+            collectionCell.configure(section.jokes,
+                                     callback: { [weak self] joke in
+                self?.eventSubject.send(.itemTapped(joke))
+            },
+                                     didLike: { [weak self] joke in
+                self?.dataProvider.storeLike(joke: joke)
+            })
             return collectionCell
         }
         
@@ -180,7 +190,6 @@ private extension HomeViewController {
     
     func setupCollectionView() {
         categoriesCollectionView.backgroundColor = .bg
-        categoriesCollectionView.isPagingEnabled = true
         categoriesCollectionView.contentInsetAdjustmentBehavior = .never
         categoriesCollectionView.showsVerticalScrollIndicator = false
         categoriesCollectionView.delegate = self
@@ -212,5 +221,12 @@ private extension HomeViewController {
             layout,
             animated: false
         )
+    }
+}
+
+// MARK: - EventEmitting
+extension HomeViewController: EventEmitting {
+    var eventPublisher: AnyPublisher<HomeViewEvent, Never> {
+        eventSubject.eraseToAnyPublisher()
     }
 }

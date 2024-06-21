@@ -46,5 +46,6 @@ final class FirebaseAuthManager: FirebaseAuthManaging {
         guard let userID = authService.currentUser?.uid else { throw NetworkingError.notLoggedIntUser }
         return userID
     }
+    
 }
 

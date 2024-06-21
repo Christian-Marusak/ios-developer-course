@@ -51,9 +51,7 @@ extension APIManager {
             throw NetworkingError.decodingFailed(error: error)
         }
     }
-}
-
-private extension APIManager {
+    
     func request(_ endpoint: Endpoint) async throws -> Data {
         let request: URLRequest = try endpoint.asURLRequest()
 

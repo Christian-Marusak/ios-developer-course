@@ -8,7 +8,7 @@
 import Foundation
 
 enum SwipingViewAction {
-    case viewDidLoad
+    case viewDidLoad(Joke?)
     case didLike(String, Bool)
     case noMoreJokes
     case dataFetched([Joke])

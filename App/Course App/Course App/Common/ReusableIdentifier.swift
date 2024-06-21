@@ -17,3 +17,5 @@ extension ReusableIdentifier where Self: UICollectionViewCell {
         String(describing: Self.self)
     }
 }
+
+extension UICollectionViewCell: ReusableIdentifier {}

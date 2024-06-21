@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 protocol Coordinator: AnyObject {
-    var childCoordinators: [Coordinator] { get set }
     var container: Container { get }
+    var childCoordinators: [Coordinator] { get set }
     func start()
     func handleDeepling(deeplink: Deeplink)
 }

@@ -1,32 +1,28 @@
-//
 //  SwipingViewStore.swift
 //  Course App
 //
 //  Created by Christián on 19/06/2024.
 //
 
-import Foundation
-import SwiftUI
 import Combine
+import Foundation
+import os
 
-final class SwipingViewStore: ObservableObject, EventEmitting {
-    
-    private let jokesService = JokeServicing = JokeService(apiManager: APIManager())
+final class SwipingViewStore: ObservableObject, EventEmitting, Store {
     private let store: StoreManaging
-    private let category: String? = nil
-    private let keychainService: KeychainServicing
+    private let jokesService: JokeServicing
+    private var category: String?
+    private let logger = Logger()
+    private var counter: Int = 0
     private let eventSubject = PassthroughSubject<SwipingViewEvent, Never>()
-    
-    @Published var viewState: SwipingViewState = .initial
-    
-    init(store: StoreManaging, keychainService: KeychainServicing) {
-        self.keychainService = keychainService
+    private var initialJoke: Joke?
+    @Published var state: SwipingViewState = .initial
+
+    init(store: StoreManaging, jokeService: JokeServicing) {
         self.store = store
-//            self.category = joke?.categories.first
-//            if let joke {
-//                viewState.jokes.append(joke)
-//            }
-        }
+        self.jokesService = jokeService
+    }
+
     var eventPublisher: AnyPublisher<SwipingViewEvent, Never> {
         eventSubject.eraseToAnyPublisher()
     }
@@ -37,16 +33,23 @@ extension SwipingViewStore {
     func send(_ action: SwipingViewAction) {
         switch action {
         case let .dataFetched(jokes):
-            viewState.jokes.append(contentsOf: jokes)
-            viewState.status = .ready
+            let jokes = initialJoke == nil ? jokes : [initialJoke!] + jokes
+            state.jokes.append(contentsOf: jokes)
+            state.status = .ready
             logger.info("thread: \(Thread.current.description)")
             break
-        case .viewDidLoad:
+        case let .viewDidLoad(joke):
             logger.info("thread: \(Thread.current.description)")
-            viewState.status = .loading
+            initialJoke = joke
+            category = joke?.categories.first
+            state.status = .loading
             fetchRandomJokes()
         case let .didLike(jokeId, liked):
-            break
+            storeJokeLike(jokeId: jokeId, liked: liked)
+            counter += 1
+            if counter == state.jokes.count {
+                send(.noMoreJokes)
+            }
         case .noMoreJokes:
             eventSubject.send(.dismiss)
         }
@@ -58,25 +61,8 @@ private extension SwipingViewStore {
     func fetchRandomJokes() {
         logger.info("thread: \(Thread.current.description)")
         Task {
-            try await withThrowingTaskGroup(of: JokeResponse.self) {[weak self] group in guard let self else {
-                return
-            }
-                for _ in 1...5 {
-                    group.addTask {
-                        if let category = self.category {
-                            try await self.jokesService.fetchJokeForCategory(category)
-                        } else {
-                            try await self.jokesService.fetchRandomJoke()
-                        }
-                    }
-                }
-
-                var jokes: [Joke] = []
-                for try await jokeResponse in group {
-                    jokes.append(Joke(jokeResponse: jokeResponse, liked: false))
-                }
-                await send(.dataFetched(jokes))
-            }
+            let (_, jokes) = try await self.jokesService.fetchJokes(number: 5, category: self.category)
+            await send(.dataFetched(jokes))
         }
     }
     

@@ -18,24 +18,18 @@ enum Constants {
 }
 
 final class AppCoordinator: AppCoordinating, ObservableObject {
-    var container = Container()
-    
     @Published var isAuthorizedFlow: Bool = Auth.auth().currentUser != nil
-    
-    init() {
-        
-        
-        if isAuthorizedFlow {
-            rootViewController = makeTabBarFlow()
-        } else {
-            rootViewController = makeLoginFlow()
-        }
-    }
-    
-    private(set) var rootViewController: UIViewController = UIViewController()
-    private lazy var cancellables = Set<AnyCancellable>()
-    
+    var container = Container()
     var childCoordinators = [Coordinator]()
+    private lazy var cancellables = Set<AnyCancellable>()
+    private(set) lazy var rootViewController: UIViewController = {
+        if isAuthorizedFlow {
+            makeTabBarFlow()
+        } else {
+            makeLoginFlow()
+        }
+    }()
+    
 }
 
 
@@ -44,18 +38,19 @@ final class AppCoordinator: AppCoordinating, ObservableObject {
 extension AppCoordinator {
     
     func start() {
-        setupAppUI()
         assembleDependencyInjectionContainer()
+        setupAppUI()
     }
-    
+
     func assembleDependencyInjectionContainer() {
         ManagerRegistration.registerDependencies(to: container)
-//        ServiceManager.registerDependencies(to: container)
-//        StoreRegistration.registerDependencies(to: container)
+        ServiceRegistration.registerDependencies(to: container)
+        StoreRegistration.registerDependencies(to: container)
     }
     
     func setupAppUI() {
         UITabBar.appearance().backgroundColor = .brown
+        UITabBar.appearance().tintColor = .white
         UINavigationBar.appearance().backgroundColor = .red
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.bold(with: .size28), .foregroundColor: UIColor.blue]
     }
