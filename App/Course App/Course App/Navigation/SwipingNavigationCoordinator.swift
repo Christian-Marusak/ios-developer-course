@@ -12,6 +12,7 @@ import SwiftUI
 import UIKit
 
 final class SwipingViewNavigationCoordinator: NSObject, NavigationControllerCoordinator, CancellablesContaining, SwipingViewFactory {
+    
     // MARK: Private properties
     private(set) lazy var navigationController: UINavigationController = CustomNavigationController()
     private let logger = Logger()
@@ -31,7 +32,7 @@ final class SwipingViewNavigationCoordinator: NSObject, NavigationControllerCoor
 // MARK: - Start
 extension SwipingViewNavigationCoordinator {
     func start() {
-        navigationController.setViewControllers([makeSwipingView()], animated: false)
+        self.navigationController.setViewControllers([makeSwipingView()], animated: false)
     }
 }
 

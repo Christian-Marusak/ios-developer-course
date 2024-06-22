@@ -8,7 +8,7 @@ import Combine
 import Foundation
 import os
 
-final class SwipingViewStore: ObservableObject, EventEmitting, Store {
+final class SwipingViewStore: EventEmitting, Store {
     private let store: StoreManaging
     private let jokesService: JokeServicing
     private var category: String?

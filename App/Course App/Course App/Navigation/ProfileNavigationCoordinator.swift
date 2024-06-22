@@ -33,16 +33,21 @@ final class ProfileNavigationCoordinator: NSObject, NavigationControllerCoordina
 
 }
 
-
-
 // MARK: - Factories
 private extension ProfileNavigationCoordinator {
     func makeProfileView() -> UIViewController {
-        let profileView = ProfileView()
+        let firebaseStoreManager = container.resolve(type: StoreManaging.self)
+        let firebaseAuthManager = container.resolve(type: FirebaseAuthManaging.self)
+        let profileView = ProfileView(
+            authManager: firebaseAuthManager,
+            firebaseStoreManager: firebaseStoreManager
+        )
         profileView.eventPublisher.sink { [weak self] event in
             self?.eventSubject.send(event)
         }.store(in: &cancellables)
-        return UIHostingController(rootView: profileView)
+        let viewController = UIHostingController(rootView: profileView)
+        viewController.title = "Profile View"
+        return viewController
     }
     
 }

@@ -6,93 +6,46 @@
 //
 
 import SwiftUI
-import Combine
-import FirebaseAuth
-import os
 // MARK: - User Interface of LoginView
 
 struct LoginView: View {
     
-    enum Action {
-        case signIn, signUp
-        
-        func toggle() -> Action {
-            self == .signIn ? .signUp : .signIn
-        }
-    }
-    
-    enum LoginEvent {
-        case login
-    }
-    
-    @State private var name: String = ""
-    @State private var email: String
-    @State private var password: String
-    @State private var action: Action = .signIn
-    
-    private let authManager = FirebaseAuthManager()
-    private let storeManager = FirebaseStoreManager()
-    private let eventSubject = PassthroughSubject<LoginEvent, Never>()
-    private let logger = Logger()
-
-    init(email: String = "", password: String = "") {
-        self.email = email
-        self.password = password
+    @StateObject private var store: LoginViewStore
+   
+    init(store: LoginViewStore) {
+        _store = .init(wrappedValue: store)
     }
 
     var body: some View {
         Form {
-            if action == .signUp {
-                TextField("Name", text: $name)
+            if store.state.status == .signUp {
+                TextField("Name", text: $store.state.name)
             }
-            TextField("Email", text: $email)
-            SecureField("Password", text: $password)
+            TextField("Email", text: $store.state.email)
+            SecureField("Password", text: $store.state.password)
 
-            Button((action == .signIn ? "Sign in" : "Sign up")) {
-                signIn()
+            Button(store.state.buttonTitle) {
+                store.send(.login)
             }
             
             Button("Change action") {
-                action = action.toggle()
+                store.send(.toggleStatus)
+            }
+        }
+        .alert(
+            store.state.error?.localizedDescription ?? "Error",
+            isPresented: $store.state.showError
+        ) {
+            Button("OK", role: .cancel) {
+                store.send(.hideError)
             }
         }
     }
 }
 
-private extension LoginView {
-    @MainActor
-    func signIn() {
-        Task {
-            do {
-                switch action {
-                case .signIn:
-                    try await authManager.signIn(Credentials(email: email, password: password))
-                case  .signUp:
-                   try await signUp()
-                }
-                eventSubject.send(.login)
-            } catch {
-                logger.error("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    private func signUp() async throws {
-        try await authManager.signUp(Credentials(email: email, password: password))
-        try await storeManager.store(userDetails: UserDetails(name: name))
-    }
-}
-
-// MARK: - EventEmitting
-extension LoginView: EventEmitting {
-    var eventPublisher: AnyPublisher<LoginEvent, Never> {
-        eventSubject.eraseToAnyPublisher()
-    }
-}
-
-#Preview {
-    LoginView(email: "email@email.com", password: "password")
-}
+//#Preview {
+//    LoginView(email: "email@email.com", password: "password")
+//}
 
 
 //struct LoginView: View {

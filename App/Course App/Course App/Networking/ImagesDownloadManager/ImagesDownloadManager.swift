@@ -9,15 +9,19 @@ import UIKit.UIImage
 
 typealias ImageIdResponse = (id: String, image: UIImage)
 
-final class ImageService {
-    let apiManager: APIManager
+protocol ImageServicing: AnyObject {
+    func downloadImagesFor(ids: [String]) async throws -> [String : UIImage]
+}
+
+final class ImageService: ImageServicing {
+    let apiManager: APIManaging
     
-    init(apiManager: APIManager) {
+    init(apiManager: APIManaging) {
         self.apiManager = apiManager
     }
     
     private func getImage(id: String) async throws -> ImageIdResponse {
-        let data: Data = try await self.apiManager.request(ImagesRouter.size300x200)
+        let data: Data = try await apiManager.request(ImagesRouter.size300x200)
         guard let image = UIImage(data: data) else {
             throw NetworkingError.badImageData
         }

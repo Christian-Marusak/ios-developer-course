@@ -18,17 +18,22 @@ struct ProfileView: View {
     
     @State var name: String?
     
-    private var authManager: FirebaseAuthManaging = FirebaseAuthManager()
-    private var storeManager: FirebaseStoreManager = FirebaseStoreManager()
+    private var authManager: FirebaseAuthManaging
+    private var firebaseStoreManager: StoreManaging
     
     private let eventSubject = PassthroughSubject<ProfileViewEvent, Never>()
+    
+    init(authManager: FirebaseAuthManaging, firebaseStoreManager: StoreManaging) {
+        self.authManager = authManager
+        self.firebaseStoreManager = firebaseStoreManager
+    }
     
     var body: some View {
         Text(name ?? "Profile View").font(.title)
         Button(action: {
             eventSubject.send(.showOnboarding)
         }, label: {
-            Text("Start onboarding inside profile view")
+            Text("Start onboarding modal")
         })
         Button(action: {
             Task {
@@ -53,7 +58,7 @@ struct ProfileView: View {
 private extension ProfileView {
     @MainActor
     func getLoggedUserName() async throws {
-        let userDetails = try await storeManager.fetchUserDetails()
+        let userDetails = try await firebaseStoreManager.fetchUserDetails()
         name = userDetails.name
     }
 }
@@ -64,6 +69,6 @@ extension ProfileView: EventEmitting {
     }
 }
 
-#Preview {
-    ProfileView()
-}
+//#Preview {
+//    ProfileView()
+//}

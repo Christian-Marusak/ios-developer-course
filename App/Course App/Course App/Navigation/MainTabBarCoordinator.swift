@@ -9,6 +9,7 @@ import DependencyInjection
 import UIKit
 import SwiftUI
 import Combine
+import TestModule
 
 enum MainTabBarCoordinatorEvent {
     case logout(_ coordinator: MainTabBarCoordinator)
@@ -22,7 +23,7 @@ final class MainTabBarCoordinator: NSObject, TabBarControllerCoordinator {
     }
     
     var childCoordinators = [Coordinator]()
-    private(set) lazy var tabBarController = makeTabBarController()
+    private(set) lazy var tabBarController: UITabBarController = makeTabBarController()
     private var eventSubject = PassthroughSubject<MainTabBarCoordinatorEvent, Never>()
     private lazy var cancellables = Set<AnyCancellable>()
 }
@@ -73,8 +74,8 @@ private extension MainTabBarCoordinator {
         }
     }
 
-    func makeTabBarController() -> UITabBarController {
-        let tabBarController = UITabBarController()
+    func makeTabBarController() -> MainTabBarController {
+        let tabBarController = MainTabBarController()
         tabBarController.delegate = self
         return tabBarController
     }
@@ -102,9 +103,6 @@ private extension MainTabBarCoordinator {
     func setupProfileView() -> UIViewController {
         let profileCoordinator = ProfileNavigationCoordinator(container: container)
         startChildCoordinator(profileCoordinator)
-        
-        let viewController = UIHostingController(rootView: ProfileView())
-        viewController.title = "Profile View"
         profileCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
         profileCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold(with: .size20), .foregroundColor: UIColor.blue], for: .normal)
         

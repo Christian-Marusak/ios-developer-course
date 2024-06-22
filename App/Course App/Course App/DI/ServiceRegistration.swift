@@ -20,5 +20,11 @@ enum ServiceRegistration {
             in: .shared,
             initializer: JokeService.init
         )
+        
+        container.autoregister(
+            type: ImageServicing.self,
+            in: .shared,
+            initializer: ImageService.init
+        )
     }
 }

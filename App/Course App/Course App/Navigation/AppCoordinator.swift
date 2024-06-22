@@ -10,6 +10,7 @@ import FirebaseAuth
 import UIKit
 import Combine
 import DependencyInjection
+import TestModule
 
 protocol AppCoordinating: ViewControllerCoordinator {}
 
@@ -73,7 +74,7 @@ private extension AppCoordinator {
         let coordinator = LoginFlowCoordinator(container: container)
         startChildCoordinator(coordinator)
         coordinator.eventPublisher.sink { [weak self] event in
-            self?.handle(event)
+             self?.handle(event)
         }
         .store(in: &cancellables)
         return coordinator.rootViewController
@@ -106,11 +107,13 @@ private extension AppCoordinator {
         case .login(let coordinator):
             rootViewController = makeTabBarFlow()
             release(coordinator: coordinator)
-            isAuthorizedFlow = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                if let page = UserDefaults.standard.value(forKey: Constants.showOnboardingKey) as? Int {
-                    self.handleDeepling(deeplink: .onboarding(page: page))
-                    UserDefaults.standard.removeObject(forKey: Constants.showOnboardingKey)
+            DispatchQueue.main.async {
+                self.isAuthorizedFlow = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if let page = UserDefaults.standard.value(forKey: Constants.showOnboardingKey) as? Int {
+                        self.handleDeepling(deeplink: .onboarding(page: page))
+                        UserDefaults.standard.removeObject(forKey: Constants.showOnboardingKey)
+                    }
                 }
             }
         }

@@ -10,6 +10,7 @@ import os
 
 // MARK: - Protocol
 protocol APIManaging {
+    func request(_ endpoint: Endpoint) async throws -> Data
     func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T
 }
 

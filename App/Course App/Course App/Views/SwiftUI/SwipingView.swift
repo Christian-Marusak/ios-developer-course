@@ -31,7 +31,7 @@ struct SwipingView: View {
                     ForEach(store.state.jokes, id: \.self) { joke in
                         SwipingCard(
                             configuration: SwipingCard.Configuration(
-                                title: joke.categories.first ?? "",
+                                title: joke.categories.first ?? "random",
                                 description: joke.text
                             ),
                             swipeStateAction: { action in
@@ -60,7 +60,7 @@ struct SwipingView: View {
         .onFirstAppear {
             store.send(.viewDidLoad(joke))
         }
-        .navigationTitle("Random jokes")
+        .navigationTitle(joke == nil ? "Random jokes" : "\(joke!.categories.first ?? "Category") jokes")
         .embedInScrollViewIfNeeded()
     } 
     

@@ -10,17 +10,21 @@ import os
 import SwiftUI
 import UIKit
 
-enum HomeViewEvent {
-    case itemTapped(Joke)
-}
-
 final class HomeViewController: UIViewController {
     let logger = Logger()
     // swiftlint:disable:next prohibited_interface_builder
     @IBOutlet private var categoriesCollectionView: UICollectionView!
+    private lazy var cancellables = Set<AnyCancellable>()
+    private var store: HomeViewStore
     
-    // MARK: Data Source
-    private var dataProvider: RealDataProvider = RealDataProvider()
+    init(store: HomeViewStore) {
+        self.store = store
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     typealias DataSource = UICollectionViewDiffableDataSource<
         SectionData,
@@ -39,32 +43,30 @@ final class HomeViewController: UIViewController {
         case number30 = 30
     }
     private lazy var dataSource = makeDataSource()
-    private lazy var cancellables = Set<AnyCancellable>()
-    private let eventSubject = PassthroughSubject<HomeViewEvent, Never>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         title = "Categories"
-        dataProvider.fetchData()
+        store.send(.viewDidLoad)
         readData()
     }
 }
 
 // MARK: HELPER
-struct HomeView: UIViewControllerRepresentable {
-    func makeUIViewController(
-        context: Context
-    ) -> HomeViewController {
-        HomeViewController()
-    }
-    
-    func updateUIViewController(
-        _ uiViewController: HomeViewController,
-        context: Context
-    ) {
-    }
-}
+//struct HomeView: UIViewControllerRepresentable {
+//    func makeUIViewController(
+//        context: Context
+//    ) -> HomeViewController {
+//        HomeViewController()
+//    }
+//    
+//    func updateUIViewController(
+//        _ uiViewController: HomeViewController,
+//        context: Context
+//    ) {
+//    }
+//}
 
 // MARK: - UICollectionViewFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
@@ -75,9 +77,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDiffableDataSource
 private extension HomeViewController {
     func readData() {
-        dataProvider.$data.sink { [weak self] data in
+        store.$state.sink { [weak self] state in
             self?.applySnapshotData(
-                data: data,
+                data: state.sections,
                 animatingDifferences: true
             )
         }
@@ -129,10 +131,10 @@ private extension HomeViewController {
             )
             collectionCell.configure(section.jokes,
                                      callback: { [weak self] joke in
-                self?.eventSubject.send(.itemTapped(joke))
+                self?.store.send(.gotoSwaping(joke))
             },
                                      didLike: { [weak self] joke in
-                self?.dataProvider.storeLike(joke: joke)
+                self?.store.send(.didLike(joke))
             })
             return collectionCell
         }
@@ -221,12 +223,5 @@ private extension HomeViewController {
             layout,
             animated: false
         )
-    }
-}
-
-// MARK: - EventEmitting
-extension HomeViewController: EventEmitting {
-    var eventPublisher: AnyPublisher<HomeViewEvent, Never> {
-        eventSubject.eraseToAnyPublisher()
     }
 }

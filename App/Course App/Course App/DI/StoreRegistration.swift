@@ -14,5 +14,17 @@ enum StoreRegistration {
             in: .new,
             initializer: SwipingViewStore.init
         )
+        
+        container.autoregister(
+            type: HomeViewStore.self,
+            in: .new,
+            initializer: HomeViewStore.init
+        )
+        
+        container.autoregister(
+            type: LoginViewStore.self,
+            in: .new,
+            initializer: LoginViewStore.init
+        )
     }
 }

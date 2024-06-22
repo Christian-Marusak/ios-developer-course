@@ -40,15 +40,15 @@ class LoginFlowCoordinator: NSObject, NavigationControllerCoordinator {
 // MARK: - Factories
 private extension LoginFlowCoordinator {
     func makeLoginView() -> UIViewController {
-        let loginView = LoginView()
-        loginView.eventPublisher.sink { [weak self] event in
+        let store = container.resolve(type: LoginViewStore.self)
+        store.eventPublisher.sink { [weak self] event in
             guard let self else { return }
             switch event {
             case .login:
                 eventSubject.send(.login(self))
             }
         }.store(in: &cancellables)
-        return UIHostingController(rootView: loginView)
+        return UIHostingController(rootView: LoginView(store: store))
     }
 }
 

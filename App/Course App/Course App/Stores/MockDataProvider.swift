@@ -38,7 +38,7 @@ extension Joke {
     }
 }
 
-final class MockDataProvider: DataProvider, ObservableObject {
+final class MockDataProvider: ObservableObject {
     @Published var data: [SectionData]
     // MARK: Data
     private var localData = [

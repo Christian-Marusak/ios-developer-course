@@ -54,12 +54,11 @@ extension HomeNavigationCoordinator {
 // MARK: - Factory methods
 private extension HomeNavigationCoordinator {
     func makeHomeView() -> UIViewController {
-        let homeViewController = HomeViewController()
-        homeViewController.eventPublisher.sink { [weak self] event in
+        let store = container.resolve(type: HomeViewStore.self)
+        store.eventPublisher.sink { [weak self] event in
             self?.handle(event)
-        }
-        .store(in: &cancellables)
-        return homeViewController
+        }.store(in: &cancellables)
+        return  HomeViewController(store: store)
     }
 }
 
@@ -69,7 +68,13 @@ private extension HomeNavigationCoordinator {
         switch event {
         case let .itemTapped(joke):
             logger.info("Joke on home screen was tapped \(joke.text)")
-            navigationController.pushViewController(makeSwipingView(joke), animated: true)
+            navigationController.pushViewController(
+                makeSwipingView(
+                    hideBottomBar: true,
+                    joke: joke
+                ),
+                animated: true
+            )
         }
     }
 }

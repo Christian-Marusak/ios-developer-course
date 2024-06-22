@@ -7,14 +7,7 @@
 
 import SwiftUI
 import UIKit
-
-enum FontSize: CGFloat {
-    case size36 = 36
-    case size28 = 28
-    case size20 = 20
-    case size12 = 12
-    case size18 = 18
-}
+import TestModule
 
 enum FontType: String {
     case regular = "Poppins-Regular"

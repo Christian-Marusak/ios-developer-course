@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Store {
+protocol Store: ObservableObject {
     associatedtype State
     associatedtype Action
 
