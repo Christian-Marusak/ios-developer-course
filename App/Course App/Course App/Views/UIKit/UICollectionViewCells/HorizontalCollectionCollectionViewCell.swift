@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import TestModule
 
 final class HorizontalCollectionCollectionViewCell: UICollectionViewCell {
     private let padding: CGFloat = 5
@@ -55,7 +56,7 @@ extension HorizontalCollectionCollectionViewCell {
 }
 
 // MARK: - Setup UI
-private extension HorizontalCollectionCollectionViewCell {
+extension HorizontalCollectionCollectionViewCell {
     func setupUI() {
         addSubviews()
         setupConstraints()

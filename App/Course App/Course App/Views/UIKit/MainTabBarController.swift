@@ -34,7 +34,7 @@ private extension MainTabBarController {
     }
     func setupGlobalTabBarUI() {
         UITabBar.appearance().backgroundColor = .brown
-        UITabBar.appearance().tintColor = .white
+        UITabBar.appearance().tintColor = .black
     }
     func setupGlobalNavigationBar() {
         UINavigationBar.appearance().backgroundColor = .red

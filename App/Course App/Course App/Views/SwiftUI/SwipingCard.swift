@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import TestModule
+
 typealias Action<T> = (T) -> Void
 
 struct SwipingCard: View {

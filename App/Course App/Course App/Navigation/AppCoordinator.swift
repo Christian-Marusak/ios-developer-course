@@ -51,7 +51,7 @@ extension AppCoordinator {
     
     func setupAppUI() {
         UITabBar.appearance().backgroundColor = .brown
-        UITabBar.appearance().tintColor = .white
+        UITabBar.appearance().tintColor = .black
         UINavigationBar.appearance().backgroundColor = .red
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.bold(with: .size28), .foregroundColor: UIColor.blue]
     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TestModule
 
 struct ScratchView: View {
     // MARK: - Line

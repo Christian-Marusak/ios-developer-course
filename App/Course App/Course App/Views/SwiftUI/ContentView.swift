@@ -6,6 +6,7 @@
 //
 import os
 import SwiftUI
+import TestModule
 
 struct ContentView: View {
     enum MagicNumbers: CGFloat {

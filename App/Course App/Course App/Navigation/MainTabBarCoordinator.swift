@@ -83,11 +83,8 @@ private extension MainTabBarCoordinator {
     func setupCategoriesView() -> UIViewController {
         let homeCoordinator = HomeNavigationCoordinator(container: container)
         startChildCoordinator(homeCoordinator)
-        homeCoordinator.rootViewController.tabBarItem = UITabBarItem(
-            title: "Categories",
-            image: UIImage(systemName: "list.dash.header.rectangle"),
-            tag: 0
-        )
+        homeCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Categories",image: UIImage(systemName: "list.dash.header.rectangle"),tag: 0)
+        homeCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .medium)], for: .normal)
         return homeCoordinator.rootViewController
     }
     
@@ -104,7 +101,7 @@ private extension MainTabBarCoordinator {
         let profileCoordinator = ProfileNavigationCoordinator(container: container)
         startChildCoordinator(profileCoordinator)
         profileCoordinator.rootViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
-        profileCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold(with: .size20), .foregroundColor: UIColor.blue], for: .normal)
+        profileCoordinator.rootViewController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .medium)], for: .normal)
         
         profileCoordinator.eventPublisher.sink { [weak self] event in
             guard let self else {
