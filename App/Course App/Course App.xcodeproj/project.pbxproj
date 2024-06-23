@@ -157,7 +157,7 @@
 		AA4F36FB2BF25261006A6D2F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AA4F36FC2BF25261006A6D2F /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		AA6275B02BEFE1B800646C3E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		AA7B65922C275A3E00503A6B /* TestModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TestModule; path = ../../../../TestModule; sourceTree = "<group>"; };
+		AA7B65922C275A3E00503A6B /* TestModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TestModule; path = ../TestModule; sourceTree = "<group>"; };
 		AA7B65992C2772A700503A6B /* SelectableButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectableButtonStyle.swift; path = ../../../../../../../SelectableButtonStyle.swift; sourceTree = "<group>"; };
 		AA7CF9A52BF3ACB9001B2E1B /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA82E14F2BFCD6C900B0A1C3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
