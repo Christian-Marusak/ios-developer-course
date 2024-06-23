@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TestModule
 
 enum PaddingSize: CGFloat {
     case `default` = 10
@@ -14,7 +15,7 @@ enum PaddingSize: CGFloat {
 
 struct SelectableButtonStyle: ButtonStyle {
     // MARK: - UI constants
-    private enum StyleConstant {
+    public enum StyleConstant {
         static let opacity: CGFloat = 0.5
         static let scaleEffectMin: CGFloat = 0.7
         static let scaleEffectMax: CGFloat = 1
