@@ -25,18 +25,18 @@ final class KeychainServiceTests: XCTestCase {
     }
 
     func testAuthDataKeychainServiceFlow() throws {
-        try keychainService.storeAuthData(authData: "authorized")
+        try keychainService.storeAuthData(authData: "tested")
         let fetchAuthTokenFromKeychain = try keychainService.fetchAuthData()
-        print("Printing out content of \(fetchAuthTokenFromKeychain)")
-        XCTAssertTrue(fetchAuthTokenFromKeychain == "authorized")
+        logger.info("Printing out content of \(fetchAuthTokenFromKeychain)")
+        XCTAssertTrue(fetchAuthTokenFromKeychain == "tested")
         try keychainService.removeAuthData()
         XCTAssertThrowsError(try keychainService.fetchAuthData())
     }
     
     func testLoginDataFlow() throws {
-        try keychainService.storeLogin("mylogin")
+        try keychainService.storeLogin("myStoredLogin")
         let fetchLoginFromKeychain = try keychainService.fetchLogin()
-        XCTAssertTrue(fetchLoginFromKeychain == "mylogin")
+        XCTAssertTrue(fetchLoginFromKeychain == "myStoredLogin")
         try keychainService.removeLoginData()
         XCTAssertThrowsError(try keychainService.fetchLogin())
     }

@@ -8,13 +8,6 @@
 import UIKit
 import KeychainAccess
 
-
-
-enum KeychainKey: String {
-    case authData = "com.course.app.authData"
-    case loginString = "com.course.app.loginString"
-}
-
 protocol KeychainServicing {
     func storeAuthData(authData: String) throws
     func removeAuthData() throws
@@ -23,27 +16,27 @@ protocol KeychainServicing {
 class KeychainService: KeychainServicing {
     var keychainManager: KeychainManaging
     func storeAuthData(authData: String) throws {
-        try keychainManager.store(key: KeychainKey.authData.rawValue, value: authData)
+        try keychainManager.store(key: "com.course.app.authData", value: authData)
     }
     
     func removeAuthData() throws {
-        try keychainManager.remove(key: KeychainKey.authData.rawValue)
+        try keychainManager.remove(key: "com.course.app.authData")
     }
     
     func fetchAuthData() throws -> String {
-            try keychainManager.fetch(key: KeychainKey.authData.rawValue)
+            try keychainManager.fetch(key: "com.course.app.authData")
         }
     
     func fetchLogin() throws -> String {
-        try keychainManager.fetch(key: KeychainKey.loginString.rawValue)
+        try keychainManager.fetch(key: "com.course.app.loginString")
     }
     
     func removeLoginData() throws {
-        try keychainManager.remove(key: KeychainKey.loginString.rawValue)
+        try keychainManager.remove(key: "com.course.app.loginString")
     }
     
     func storeLogin(_ login: String) throws {
-            try keychainManager.store(key: KeychainKey.loginString.rawValue, value: login)
+            try keychainManager.store(key: "com.course.app.loginString", value: login)
         }
     
     init(keychainManager: KeychainManaging) {
