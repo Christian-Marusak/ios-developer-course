@@ -1,13 +1,13 @@
 //
-//  Course_AppUITestsLaunchTests.swift
-//  Course AppUITests
+//  UITestingCourseAppLaunchTests.swift
+//  UITestingCourseApp
 //
-//  Created by Christián on 09/05/2024.
+//  Created by Christián on 25/06/2024.
 //
 
 import XCTest
 
-final class Course_AppUITestsLaunchTests: XCTestCase {
+final class UITestingCourseAppLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
@@ -18,7 +18,7 @@ final class Course_AppUITestsLaunchTests: XCTestCase {
     }
 
     func testLaunch() throws {
-                let app = XCUIApplication()
+        let app = XCUIApplication()
         app.launch()
 
         // Insert steps here to perform after app launch but before taking a screenshot,

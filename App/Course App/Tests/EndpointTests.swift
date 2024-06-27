@@ -1,12 +1,12 @@
 //
 //  EndpointTests.swift
-//  Course Tests
+//  App Course Unit Tests
 //
-//  Created by Christián on 24/06/2024.
+//  Created by Christián on 25/06/2024.
 //
 
-@testable import App_Course_Dev
 import XCTest
+@testable import App_Course_Dev
 
 final class EndpointTests: XCTestCase {
 

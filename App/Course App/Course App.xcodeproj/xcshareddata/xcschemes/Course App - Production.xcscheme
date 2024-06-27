@@ -29,6 +29,41 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AA245BB22C2AD993007AA84E"
+               BuildableName = "App Course UITests.xctest"
+               BlueprintName = "App Course UITests"
+               ReferencedContainer = "container:Course App.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AA245BC12C2ADA4B007AA84E"
+               BuildableName = "App Course Unit Tests.xctest"
+               BlueprintName = "App Course Unit Tests"
+               ReferencedContainer = "container:Course App.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AA402A3C2C2B5B8E00759F30"
+               BuildableName = "UITestingCourseApp.xctest"
+               BlueprintName = "UITestingCourseApp"
+               ReferencedContainer = "container:Course App.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Production - Debug"
