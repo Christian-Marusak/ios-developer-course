@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
-import TestModule
 
 enum PaddingSize: CGFloat {
     case `default` = 10
     case extra = 15
 }
 
-struct SelectableButtonStyle: ButtonStyle {
+public struct SelectableButtonStyle: ButtonStyle {
+    
+    public init(isSelected: Binding<Bool?>, color: Color) {
+            _isSelected = .init(projectedValue: isSelected)
+            self.color = color
+        }
+    
     // MARK: - UI constants
-    public enum StyleConstant {
+    enum StyleConstant {
         static let opacity: CGFloat = 0.5
         static let scaleEffectMin: CGFloat = 0.7
         static let scaleEffectMax: CGFloat = 1
@@ -25,7 +30,7 @@ struct SelectableButtonStyle: ButtonStyle {
     @Binding var isSelected: Bool?
     var color: Color
 
-    func makeBody(configuration: Configuration) -> some View {
+    public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(PaddingSize.default.rawValue)
             .background(color.opacity(StyleConstant.opacity))
