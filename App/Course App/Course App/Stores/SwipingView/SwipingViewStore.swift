@@ -12,7 +12,6 @@ final class SwipingViewStore: EventEmitting, Store {
     private let store: StoreManaging
     private let jokesService: JokeServicing
     private var category: String?
-    private let logger = Logger()
     private var counter: Int = 0
     private let eventSubject = PassthroughSubject<SwipingViewEvent, Never>()
     private var initialJoke: Joke?

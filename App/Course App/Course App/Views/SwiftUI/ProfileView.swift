@@ -10,66 +10,38 @@ import UIKit
 import Combine
 import TestModule
 
-enum ProfileViewEvent {
-    case logout
-    case showOnboarding
-}
+
 
 struct ProfileView: View {
+    @StateObject private var store: ProfileViewStore
     
-    @State var name: String?
-    
-    private var authManager: FirebaseAuthManaging
-    private var firebaseStoreManager: StoreManaging
-    
-    private let eventSubject = PassthroughSubject<ProfileViewEvent, Never>()
-    
-    init(authManager: FirebaseAuthManaging, firebaseStoreManager: StoreManaging) {
-        self.authManager = authManager
-        self.firebaseStoreManager = firebaseStoreManager
+    init(store: ProfileViewStore) {
+        _store = .init(wrappedValue: store)
     }
     
     var body: some View {
-        Text(name ?? "Profile View").font(.title)
+        Text(store.name ?? "Profile View").font(.title)
         Button(action: {
-            eventSubject.send(.showOnboarding)
+            store.eventSubject.send(.showOnboarding)
         }, label: {
             Text("Start onboarding modal")
         })
         Button(action: {
             Task {
                 do {
-                    try await authManager.signOut()
+                    try await store.authManager.signOut()
                 } catch {
                     logger.info("Logout failed with error \(error.localizedDescription)")
                 }
-                eventSubject.send(.logout)
+                store.eventSubject.send(.logout)
             }
         }, label: {
             Text("Logout")
         }).onFirstAppear {
             Task {
-                try await getLoggedUserName()
+                try await store.getLoggedUserName()
             }
         }
     }
     
 }
-
-private extension ProfileView {
-    @MainActor
-    func getLoggedUserName() async throws {
-        let userDetails = try await firebaseStoreManager.fetchUserDetails()
-        name = userDetails.name
-    }
-}
-
-extension ProfileView: EventEmitting {
-    var eventPublisher: AnyPublisher<ProfileViewEvent, Never> {
-        eventSubject.eraseToAnyPublisher()
-    }
-}
-
-//#Preview {
-//    ProfileView()
-//}

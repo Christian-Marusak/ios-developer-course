@@ -42,21 +42,7 @@ final class MockDataProvider: ObservableObject {
     @Published var data: [SectionData]
     // MARK: Data
     private var localData = [
-        SectionData(
-            title: "Celebrations",
-            jokes: [
-                Joke(
-                    text: "Chuck Norris can make hamburger out of ham."
-                ),
-                Joke(
-                    text: "All your base are belong to Chuck Norris"
-                ),
-                Joke(
-                    text: "Chuck Norris can hit a barn door with a broad's side."
-                )
-            ]
-        )
-    ]
+        SectionData(title: "Celebrations",jokes: [Joke(text: "Chuck Norris can make hamburger out of ham."),Joke(text: "All your base are belong to Chuck Norris"),Joke(text: "Chuck Norris can hit a barn door with a broad's side.")])]
     
     init() {
         data = localData

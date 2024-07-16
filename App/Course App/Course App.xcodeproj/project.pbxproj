@@ -50,6 +50,7 @@
 		AA245BD92C2B1303007AA84E /* JokeServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA245BD82C2B1303007AA84E /* JokeServiceTest.swift */; };
 		AA245BDA2C2B1388007AA84E /* MockApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA245BD42C2B09F0007AA84E /* MockApiManager.swift */; };
 		AA245BDB2C2B15E4007AA84E /* MockDataResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA245BD62C2B11B8007AA84E /* MockDataResponses.swift */; };
+		AA2B49872C45956E00E63EF8 /* ProfileViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2B49862C45956E00E63EF8 /* ProfileViewStore.swift */; };
 		AA2C98522BFA13BB00B28911 /* SwipingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C98512BFA13BB00B28911 /* SwipingView.swift */; };
 		AA2C98542BFA18CD00B28911 /* SwipingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C98532BFA18CD00B28911 /* SwipingCard.swift */; };
 		AA2C98562BFBED8900B28911 /* ScratchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C98552BFBED8900B28911 /* ScratchView.swift */; };
@@ -148,6 +149,7 @@
 		AA245BD42C2B09F0007AA84E /* MockApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiManager.swift; sourceTree = "<group>"; };
 		AA245BD62C2B11B8007AA84E /* MockDataResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataResponses.swift; sourceTree = "<group>"; };
 		AA245BD82C2B1303007AA84E /* JokeServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeServiceTest.swift; sourceTree = "<group>"; };
+		AA2B49862C45956E00E63EF8 /* ProfileViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewStore.swift; sourceTree = "<group>"; };
 		AA2C98512BFA13BB00B28911 /* SwipingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingView.swift; sourceTree = "<group>"; };
 		AA2C98532BFA18CD00B28911 /* SwipingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingCard.swift; sourceTree = "<group>"; };
 		AA2C98552BFBED8900B28911 /* ScratchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchView.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				AA2006FF2BF29A5F001FFD10 /* MockDataProvider.swift */,
 				37902C2E2C1B77CA0017309E /* HomeViewStore.swift */,
 				378CFAE22C26E472002670E5 /* LoginViewStore.swift */,
+				AA2B49862C45956E00E63EF8 /* ProfileViewStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				37BAD1802C25E9E400023B40 /* Store.swift in Sources */,
 				AA245BDA2C2B1388007AA84E /* MockApiManager.swift in Sources */,
 				AA35932F2BF3777F0043B663 /* ReusableIdentifier.swift in Sources */,
+				AA2B49872C45956E00E63EF8 /* ProfileViewStore.swift in Sources */,
 				37BAD1852C25ECA100023B40 /* ManagerRegistration.swift in Sources */,
 				37BAD1732C25DB0600023B40 /* SwipingViewEvent.swift in Sources */,
 				AA35932D2BF361D80043B663 /* UICollectionView+ReusableIdentifier.swift in Sources */,
